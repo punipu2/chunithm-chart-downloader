@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CHUNITHM 譜面保存ツール</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Helvetica Neue", sans-serif; padding: 1em; background: #f2f2f2; }
+    h1 { font-size: 1.8em; margin-bottom: 0.5em; }
+    label { display: block; margin: 0.2em 0; }
+    input, select { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; width: 95%; }
+    button { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; }
+    button { background-color: #3d3d3d; color: white; cursor: pointer; margin-top: 0.5em; }
+    button:hover { background-color: #555555; }
+    .version { font-size: 0.5em; margin-left: 0.3em; }
+    .container { background: white; padding: 1.5em; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+    .section { margin-bottom: 1.5em; }
+    .note { font-size: 0.9em; color: #555; margin: 0.5em 0; }
+    #preview { margin-top: 1em; text-align: center; }
+    #preview img { max-width: 100%; height: auto; }
+    ul#suggestions { list-style: none; padding: 0; margin-top: 0.5em; }
+    ul#suggestions li { display: flex; align-items: center; padding: 0.5em; background: #eee; margin-bottom: 0.3em; cursor: pointer; border-radius: 5px; font-size: 0.95em; }
+    ul#suggestions li:hover { background: #ddd; }
+    .diff-label { min-width: 3em; margin-right: 1.5em; font-weight: bold; color: white; padding: 0.2em 0.5em; border-radius: 4px; text-align: center; }
+    .level-label { min-width: 3em; font-weight: bold; text-align: left; color: #333; }
+    .song-title { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.0.0</span></h1>
+
+    <div class="section">
+      <div class="note">
+        譜面画像は
+        <a href="https://sdvx.in/chunithm.html" target="_blank">CHUNITHM譜面保管所</a>
+        から取得しています。
+      </div>
+    </div>
+
+    <div class="section">
+      <label>曲名検索:</label>
+      <input type="text" id="search" placeholder="入力すると候補が表示されます...">
+      <ul id="suggestions" style="display: none;"></ul>
+    </div>
+
+    <div class="section">
+      <label>譜面URLを直接入力する場合:</label>
+      <input type="text" id="url" placeholder="https://sdvx.in/chunithm/10/10098mst.htm">
+    </div>
+
+    <div class="section">
+      <button onclick="fetchAndSaveChart()">📥 譜面を保存</button>
+    </div>
+
+    <div class="note">
+      ・スペース有無を無視した検索に対応しています。<br>
+      ・一部保存できない譜面があります。ご了承ください。
+    </div>
+
+    <div id="preview"></div>
+  </div>
+
+  <script>
+    const songList = [];
+    async function loadSongList() {
+      try {
+        const res = await fetch('./chunithm_songs.json');
+        const data = await res.json();
+        songList.push(...data);
+      } catch (err) {
+        alert("譜面データの読み込みに失敗しました。JSONファイルを確認してください。");
+        console.error(err);
+      }
+    }
+
+  document.getElementById('search').addEventListener('input', function () {
+    const searchField = document.getElementById('search');
+    const urlField = document.getElementById('url');
+    const input = searchField.value.replace(/\s/g, '').toLowerCase();
+    const suggestions = document.getElementById('suggestions');
+
+    // 候補クリア
+    suggestions.innerHTML = '';
+
+    if (input === "") {
+      // 両方の色をクリア
+      searchField.style.backgroundColor = '';
+      urlField.style.backgroundColor = '';
+
+      // URL欄の内容もクリア
+      urlField.value = '';
+
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    const results = songList
+      .filter(song => song.name.replace(/\s/g, '').toLowerCase().includes(input))
+      .sort((a, b) => {
+        const aName = a.name.replace(/\s/g, '').toLowerCase();
+        const bName = b.name.replace(/\s/g, '').toLowerCase();
+        return (aName.startsWith(input) ? -1 : 1) - (bName.startsWith(input) ? -1 : 1);
+      });
+
+    if (results.length === 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    results.slice(0, 10).forEach(song => {
+      const li = document.createElement('li');
+
+      const originalName = song.name;
+      const normalized = originalName.replace(/\s/g, '').toLowerCase();
+      const matchIndex = normalized.indexOf(input);
+
+      let displayName = originalName;
+
+      if (matchIndex !== -1) {
+        // 元の曲名の中で一致部分を太字にする
+        let flatIndex = 0;
+        let matchStart = -1;
+        let matchEnd = -1;
+
+        // 空白を無視したインデックスから、元の文字列中の範囲を特定
+        for (let i = 0; i < originalName.length; i++) {
+          if (originalName[i] === ' ') continue;
+          if (flatIndex === matchIndex) matchStart = i;
+          if (flatIndex === matchIndex + input.length - 1) {
+            matchEnd = i;
+            break;
+          }
+          flatIndex++;
+        }
+
+        if (matchStart !== -1 && matchEnd !== -1) {
+          displayName =
+            originalName.slice(0, matchStart) +
+            '<strong>' +
+            originalName.slice(matchStart, matchEnd + 1) +
+            '</strong>' +
+            originalName.slice(matchEnd + 1);
+        }
+      }
+
+      const diffColor = {
+        MAS: "#a0a",
+        ULT: "#862333",
+        WE:  "#273eba"
+      }[song.diff] || "#333";
+
+      li.innerHTML = `
+        <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
+        <span class="level-label">${song.level || '?'}</span>
+        <span class="song-title">${displayName}</span>
+      `;
+
+      li.onclick = () => {
+        document.getElementById('url').value = song.url;
+        document.getElementById('search').value = song.name;
+        suggestions.innerHTML = '';
+        suggestions.style.display = 'none';
+        highlightField('search');
+        highlightField('url');
+      };
+
+      suggestions.appendChild(li);
+    });
+
+    suggestions.style.display = results.length ? 'block' : 'none';
+  });
+
+  document.getElementById('url').addEventListener('input', function () {
+    clearHighlightIfEmpty('url');
+  });
+
+  async function fetchAndSaveChart() {
+    const url = document.getElementById('url').value.trim();
+    if (!url.startsWith('http')) return alert('正しい譜面URLを入力してください');
+
+    const match = url.match(/\/(\d{5})([a-zA-Z0-9]+)\.htm$/);
+    if (!match) return alert('譜面URLの形式が正しくありません。');
+
+    const song_id = match[1];
+    const diffcode = match[2];
+    const imagePath = `resized_charts/${song_id}${diffcode}.png`;
+
+    // 曲名を検索
+    const song = songList.find(s => s.url === url);
+    const title = song ? song.name : `${song_id}${diffcode}`;
+
+    try {
+      const img = await loadImage(imagePath);
+
+      const newTab = window.open();
+      if (!newTab) {
+        alert('ポップアップがブロックされました。許可してください。');
+        return;
+      }
+
+      const imgURL = img.src;
+
+      newTab.document.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              body {
+                margin: 0;
+                background: rgba(0, 0, 0, 0.85);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+              }
+              img {
+                max-width: 100%;
+                height: auto;
+                box-shadow: 0 0 20px rgba(255,255,255,0.2);
+              }
+            </style>
+          </head>
+          <body>
+            <img src="${imgURL}" alt="${title}">
+          </body>
+        </html>
+      `);
+      newTab.document.close();
+    } catch (e) {
+      alert('画像の読み込みに失敗しました。譜面データが存在しない可能性があります。');
+      console.error(e);
+    }
+  }
+
+  function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error(`画像読み込み失敗: ${src}`));
+      img.src = src;
+    });
+  }
+
+  function highlightField(id) {
+    const el = document.getElementById(id);
+    el.style.backgroundColor = '#fff9c4';
+  }
+
+  function clearHighlightIfEmpty(id) {
+    const el = document.getElementById(id);
+    if (el.value.trim() === "") {
+      el.style.backgroundColor = '';
+    }
+  }
+
+  loadSongList();
+  </script>
+</body>
+</html>
