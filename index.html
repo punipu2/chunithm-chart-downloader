@@ -9,9 +9,11 @@
     body { font-family: "Helvetica Neue", sans-serif; padding: 1em; background: #f2f2f2; }
     h1 { font-size: 1.8em; margin-bottom: 0.5em; }
     label { display: block; margin: 0.2em 0; }
-    input, select { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; width: 95%; }
-    button { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; }
-    button { background-color: #3d3d3d; color: white; cursor: pointer; margin-top: 0.5em; }
+    .inline-label { display: inline-block; margin-right: 0.8em; font-size: 0.9em; }
+    input[type="text"] { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; width: 95%; }
+    input[type="checkbox"] { padding: 0.4em; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 0.6em; font-size: 1em; border: 1px solid #ccc; border-radius: 5px; background-color: #3d3d3d; color: white; cursor: pointer; margin-top: 0.5em; }
+    button.save { margin-right: 0.5em; }
     button:hover { background-color: #555555; }
     .version { font-size: 0.5em; margin-left: 0.3em; }
     .container { background: white; padding: 1.5em; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
@@ -22,10 +24,13 @@
     ul#suggestions { list-style: none; padding: 0; margin-top: 0.5em; }
     ul#suggestions li { display: flex; align-items: center; padding: 0.5em; background: #eee; margin-bottom: 0.3em; cursor: pointer; border-radius: 5px; font-size: 0.95em; }
     ul#suggestions li:hover { background: #ddd; }
-    .diff-label { margin-right: 0.5em; font-weight: bold; color: white; padding: 0.2em 0.5em; border-radius: 4px; text-align: center; }
+    .diff-label { min-width: 2.2em; margin-right: 0.5em; font-weight: bold; color: white; padding: 0.2em 0.5em; border-radius: 4px; text-align: center; }
     .level-label { min-width: 1.8em; margin-right: 0.5em; font-weight: bold; text-align: left; color: #333; }
     .song-title { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     @media screen and (max-width: 500px) {
+      .inline-label { font-size: 0.8em; }
+      input[type="text"], input[type="checkbox"] { font-size: 0.8em; }
+      button { font-size: 0.9em; }
       .diff-label { font-size: 0.7em; }
       .level-label { font-size: 0.75em; }
       .song-title { font-size: 0.85em; }
@@ -35,7 +40,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.0.1</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.0.2</span></h1>
 
     <div class="section">
       <div class="note">
@@ -45,6 +50,13 @@
       </div>
     </div>
 
+    <div class="section">
+      <label>譜面種別フィルター:</label>
+      <label class="inline-label"><input type="checkbox" id="filterMAS"> MAS</label>
+      <label class="inline-label"><input type="checkbox" id="filterULT"> ULT</label>
+      <label class="inline-label"><input type="checkbox" id="filterWE"> WE</label>
+    </div>
+  
     <div class="section">
       <label>曲名検索:</label>
       <input type="text" id="search" placeholder="入力すると候補が表示されます...">
@@ -57,7 +69,8 @@
     </div>
 
     <div class="section">
-      <button onclick="fetchAndSaveChart()">📥 譜面を保存</button>
+      <button class="save" onclick="fetchAndSaveChart()">📥 譜面を保存</button>
+      <button id="resetBtn">入力リセット</button>
     </div>
 
     <div class="note">
@@ -81,182 +94,210 @@
       }
     }
 
-  document.getElementById('search').addEventListener('input', function () {
-    const searchField = document.getElementById('search');
-    const urlField = document.getElementById('url');
-    const input = searchField.value.replace(/\s/g, '').toLowerCase();
-    const suggestions = document.getElementById('suggestions');
-
-    // 候補クリア
-    suggestions.innerHTML = '';
-
-    if (input === "") {
-      // 両方の色をクリア
-      searchField.style.backgroundColor = '';
-      urlField.style.backgroundColor = '';
-
-      // URL欄の内容もクリア
-      urlField.value = '';
-
-      suggestions.style.display = 'none';
-      return;
-    }
-
-    const results = songList
-      .filter(song => song.name.replace(/\s/g, '').toLowerCase().includes(input))
-      .sort((a, b) => {
-        const aName = a.name.replace(/\s/g, '').toLowerCase();
-        const bName = b.name.replace(/\s/g, '').toLowerCase();
-        return (aName.startsWith(input) ? -1 : 1) - (bName.startsWith(input) ? -1 : 1);
+    function loadPrefs() {
+      ['MAS','ULT','WE'].forEach(diff => {
+        const cb = document.getElementById('filter'+diff);
+        const stored = localStorage.getItem('filter'+diff);
+        cb.checked = stored === null ? true : stored === 'true';
+        cb.addEventListener('change', () => {
+          localStorage.setItem('filter'+diff, cb.checked);
+          document.getElementById('search').dispatchEvent(new Event('input')); // チェック変更時再検索
+        });
       });
-
-    if (results.length === 0) {
-      suggestions.style.display = 'none';
-      return;
     }
 
-    results.slice(0, 10).forEach(song => {
-      const li = document.createElement('li');
+    document.getElementById('search').addEventListener('input', function () {
+      const searchField = document.getElementById('search');
+      const urlField = document.getElementById('url');
+      const input = searchField.value.replace(/\s/g, '').toLowerCase();
+      const suggestions = document.getElementById('suggestions');
 
-      const originalName = song.name;
-      const normalized = originalName.replace(/\s/g, '').toLowerCase();
-      const matchIndex = normalized.indexOf(input);
+      // フィルター状態取得
+      const masEnabled = document.getElementById('filterMAS').checked;
+      const ultEnabled = document.getElementById('filterULT').checked;
+      const weEnabled  = document.getElementById('filterWE').checked;
 
-      let displayName = originalName;
+      // 候補クリア
+      suggestions.innerHTML = '';
 
-      if (matchIndex !== -1) {
-        // 元の曲名の中で一致部分を太字にする
-        let flatIndex = 0;
-        let matchStart = -1;
-        let matchEnd = -1;
+      if (input === "") {
+        // 両方の色をクリア
+        searchField.style.backgroundColor = '';
+        urlField.style.backgroundColor = '';
 
-        // 空白を無視したインデックスから、元の文字列中の範囲を特定
-        for (let i = 0; i < originalName.length; i++) {
-          if (originalName[i] === ' ') continue;
-          if (flatIndex === matchIndex) matchStart = i;
-          if (flatIndex === matchIndex + input.length - 1) {
-            matchEnd = i;
-            break;
-          }
-          flatIndex++;
-        }
+        // URL欄の内容もクリア
+        urlField.value = '';
 
-        if (matchStart !== -1 && matchEnd !== -1) {
-          displayName =
-            originalName.slice(0, matchStart) +
-            '<strong>' +
-            originalName.slice(matchStart, matchEnd + 1) +
-            '</strong>' +
-            originalName.slice(matchEnd + 1);
-        }
+        suggestions.style.display = 'none';
+        return;
+      }
+      const results = songList
+        .filter(song => {
+          const nameNorm = song.name.replace(/\s/g, '').toLowerCase();
+          if (!nameNorm.includes(input)) return false;
+          // チェック状態による絞り込み
+          if (song.diff === 'MAS' && !masEnabled) return false;
+          if (song.diff === 'ULT' && !ultEnabled) return false;
+          if (song.diff === 'WE'  && !weEnabled) return false;
+          return true;
+        })
+        .sort((a, b) => {
+          const aName = a.name.replace(/\s/g, '').toLowerCase();
+          const bName = b.name.replace(/\s/g, '').toLowerCase();
+          return (aName.startsWith(input) ? -1 : 1) - (bName.startsWith(input) ? -1 : 1);
+        });
+
+      if (results.length === 0) {
+        suggestions.style.display = 'none';
+        return;
       }
 
-      const diffColor = {
-        MAS: "#a0a",
-        ULT: "#862333",
-        WE:  "#273eba"
-      }[song.diff] || "#333";
+      results.slice(0, 20).forEach(song => {
+        const li = document.createElement('li');
 
-      li.innerHTML = `
-        <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
-        <span class="level-label">${song.level || '?'}</span>
-        <span class="song-title">${displayName}</span>
-      `;
+        const originalName = song.name;
+        const normalized = originalName.replace(/\s/g, '').toLowerCase();
+        const matchIndex = normalized.indexOf(input);
 
-      li.onclick = () => {
-        document.getElementById('url').value = song.url;
-        document.getElementById('search').value = song.name;
-        suggestions.innerHTML = '';
-        suggestions.style.display = 'none';
-        highlightField('search');
-        highlightField('url');
-      };
+        let displayName = originalName;
 
-      suggestions.appendChild(li);
+        if (matchIndex !== -1) {
+          // 元の曲名の中で一致部分を太字にする
+          let flatIndex = 0;
+          let matchStart = -1;
+          let matchEnd = -1;
+
+          // 空白を無視したインデックスから、元の文字列中の範囲を特定
+          for (let i = 0; i < originalName.length; i++) {
+            if (originalName[i] === ' ') continue;
+            if (flatIndex === matchIndex) matchStart = i;
+            if (flatIndex === matchIndex + input.length - 1) {
+              matchEnd = i;
+              break;
+            }
+            flatIndex++;
+          }
+
+          if (matchStart !== -1 && matchEnd !== -1) {
+            displayName =
+              originalName.slice(0, matchStart) +
+              '<strong>' +
+              originalName.slice(matchStart, matchEnd + 1) +
+              '</strong>' +
+              originalName.slice(matchEnd + 1);
+          }
+        }
+
+        const diffColor = {
+          MAS: "#a0a",
+          ULT: "#862333",
+          WE:  "#273eba"
+        }[song.diff] || "#333";
+
+        li.innerHTML = `
+          <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
+          <span class="level-label">${song.level || '?'}</span>
+          <span class="song-title">${displayName}</span>
+        `;
+
+        li.onclick = () => {
+          document.getElementById('url').value = song.url;
+          document.getElementById('search').value = song.name;
+          suggestions.innerHTML = '';
+          suggestions.style.display = 'none';
+          highlightField('search');
+          highlightField('url');
+        };
+
+        suggestions.appendChild(li);
+      });
+
+      suggestions.style.display = 'block';
     });
 
-    suggestions.style.display = results.length ? 'block' : 'none';
-  });
-
-  document.getElementById('url').addEventListener('input', function () {
-    clearHighlightIfEmpty('url');
-  });
-
-  async function fetchAndSaveChart() {
-    const url = document.getElementById('url').value.trim();
-    if (!url.startsWith('http')) return alert('正しい譜面URLを入力してください');
-
-    const match = url.match(/\/(\d{5})([a-zA-Z0-9]+)\.htm$/);
-    if (!match) return alert('譜面URLの形式が正しくありません。');
-
-    const song_id = match[1];
-    const diffcode = match[2];
-    const imagePath = `resized_charts/${song_id}${diffcode}.png`;
-
-    // 曲名を検索
-    const song = songList.find(s => s.url === url);
-    const title = song ? song.name : `${song_id}${diffcode}`;
-
-    const newTab = window.open('', '_blank');
-    if (!newTab) {
-      alert('ポップアップがブロックされました。設定から許可してください。');
-      return;
-    }
-
-    newTab.document.write('<p>画像を読み込み中...</p>');
-
-    try {
-      const img = await loadImage(imagePath);
-      const imgURL = img.src;
-
-      // 読み込み後に書き換え
-      newTab.document.body.innerHTML = `
-        <style>
-          body {
-            margin: 0;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-          }
-        </style>
-        <img src="${imgURL}" alt="${title}">
-      `;
-    } catch (e) {
-      newTab.document.body.innerHTML = `<p style="color:white;">画像の読み込みに失敗しました。</p>`;
-      console.error(e);
-    }
-  }
-
-  function loadImage(src) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => resolve(img);
-      img.onerror = () => reject(new Error(`画像読み込み失敗: ${src}`));
-      img.src = src;
+    document.getElementById('url').addEventListener('input', function () {
+      clearHighlightIfEmpty('url');
     });
-  }
 
-  function highlightField(id) {
-    const el = document.getElementById(id);
-    el.style.backgroundColor = '#fff9c4';
-  }
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('search').value = '';
+      document.getElementById('url').value = '';
+      ['search','url'].forEach(id => document.getElementById(id).style.backgroundColor = '');
+    });
 
-  function clearHighlightIfEmpty(id) {
-    const el = document.getElementById(id);
-    if (el.value.trim() === "") {
-      el.style.backgroundColor = '';
+    async function fetchAndSaveChart() {
+      const url = document.getElementById('url').value.trim();
+      if (!url.startsWith('http')) return alert('正しい譜面URLを入力してください');
+
+      const match = url.match(/\/(\d{5})([a-zA-Z0-9]+)\.htm$/);
+      if (!match) return alert('譜面URLの形式が正しくありません。');
+
+      const song_id = match[1];
+      const diffcode = match[2];
+      const imagePath = `resized_charts/${song_id}${diffcode}.png`;
+
+      // 曲名を検索
+      const song = songList.find(s => s.url === url);
+      const title = song ? song.name : `${song_id}${diffcode}`;
+
+      try {
+        const response = await fetch(imagePath);
+        const blob = await response.blob();
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const imgDataUrl = reader.result;
+          const pageHtml =`
+          <!DOCTYPE html>
+          <html lang="ja">
+            <head>
+              <meta charset="UTF-8" />
+              <title>${title}</title>
+              <style>
+                body {
+                  margin: 0;
+                  background: rgba(0, 0, 0, 0.85);
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100vh;
+                }
+                img {
+                  max-width: 100%;
+                  height: auto;
+                  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+                }
+              </style>
+            </head>
+            <body>
+              <img src="${imgDataUrl}" alt="${title}" />
+            </body>
+          </html>`;
+          const outBlob=new Blob([pageHtml],{type:'text/html'});
+          const blobUrl=URL.createObjectURL(outBlob);
+          window.open(blobUrl,'_blank');
+        };
+        reader.readAsDataURL(blob);
+      } catch (e) {
+        alert('画像の読み込みに失敗しました。');
+        console.error(e);
+      }
     }
-  }
 
-  loadSongList();
+    function highlightField(id) {
+      const el = document.getElementById(id);
+      el.style.backgroundColor = '#fff9c4';
+    }
+
+    function clearHighlightIfEmpty(id) {
+      const el = document.getElementById(id);
+      if (el.value.trim() === "") {
+        el.style.backgroundColor = '';
+      }
+    }
+
+    // 初期化
+    loadSongList();
+    loadPrefs();
   </script>
 </body>
 </html>
