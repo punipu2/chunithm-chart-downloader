@@ -40,7 +40,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.0.2</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.0.3</span></h1>
 
     <div class="section">
       <div class="note">
@@ -69,7 +69,7 @@
     </div>
 
     <div class="section">
-      <button class="save" onclick="fetchAndSaveChart()">📥 譜面を保存</button>
+      <button class="save" onclick="fetchAndSaveChart()">📥 譜面を見る</button>
       <button id="resetBtn">入力リセット</button>
     </div>
 
@@ -240,6 +240,9 @@
       const song = songList.find(s => s.url === url);
       const title = song ? song.name : `${song_id}${diffcode}`;
 
+      const newTab = window.open('', '_blank');
+      if (!newTab) return alert('ポップアップがブロックされました。');
+
       try {
         const response = await fetch(imagePath);
         const blob = await response.blob();
@@ -274,7 +277,7 @@
           </html>`;
           const outBlob=new Blob([pageHtml],{type:'text/html'});
           const blobUrl=URL.createObjectURL(outBlob);
-          window.open(blobUrl,'_blank');
+          newTab.location.href = blobUrl;
         };
         reader.readAsDataURL(blob);
       } catch (e) {
