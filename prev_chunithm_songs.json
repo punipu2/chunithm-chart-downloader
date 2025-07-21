@@ -20161,5 +20161,93 @@
     "url": "https://sdvx.in//chunithm/ult/09094ult.htm",
     "genre": "ultima",
     "diff": "ULT"
+  },
+  {
+    "name": "Daydreama",
+    "bpm": 153,
+    "chain": 1805,
+    "composer": "HiTECH NINJA",
+    "notes_designer": "ミストルティン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10117mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "Energizing Flame",
+    "bpm": 201,
+    "chain": 2293,
+    "composer": "Artifact vs. Dualcast",
+    "notes_designer": "アミノハバキリ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10116mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "χρόνος",
+    "bpm": 190,
+    "chain": 2892,
+    "composer": "Street",
+    "notes_designer": "βλαδε",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10121mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Flap&Clap",
+    "bpm": 190,
+    "chain": 2152,
+    "composer": "棗いつき",
+    "notes_designer": "Clematis&Mistilteinn",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10119mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "luminoid love PART2",
+    "bpm": 155,
+    "chain": 1828,
+    "composer": "DE DE MOUSE",
+    "notes_designer": "じゃこレモン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10120mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "TOXIC",
+    "bpm": 183,
+    "chain": 2134,
+    "composer": "Zekk",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10122mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Wing:No.6223",
+    "bpm": 190,
+    "chain": 1966,
+    "composer": "NAMV & Game-i",
+    "notes_designer": "じゃこレモン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10124mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "エモーション・キャプチャー",
+    "bpm": 185,
+    "chain": 2176,
+    "composer": "藍月なくる",
+    "notes_designer": "みぞれヤナギ",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10118mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
