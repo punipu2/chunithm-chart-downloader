@@ -20249,5 +20249,137 @@
     "url": "https://sdvx.in//chunithm/10/10118mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "TAIDADA",
+    "bpm": 144,
+    "chain": 1560,
+    "composer": "ずっと真夜中でいいのに。",
+    "notes_designer": "ターボレモン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10104mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "ぎゅむ！",
+    "bpm": 168,
+    "chain": 1808,
+    "composer": "ぷにる（CV：篠原 侑）「ぷにるはかわいいスライム」",
+    "notes_designer": "大根おろしペンギン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10103mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "はいよろこんで",
+    "bpm": 147,
+    "chain": 1599,
+    "composer": "こっちのけんと",
+    "notes_designer": "ミストルティン",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10106mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "モエチャッカファイア",
+    "bpm": 163,
+    "chain": 1881,
+    "composer": "弌誠「ゲーム『ゼンレスゾーンゼロ』エレン・ジョー 同人イメージソング」",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10105mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "テトリス",
+    "bpm": 170,
+    "chain": 2343,
+    "composer": "柊マグネタイト",
+    "notes_designer": "じゃこレモンさん（１１）",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10108mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "モ　ミ　ア　ゲ　ヲ　シ　ャ　カ　ア　ゲ　ヲ",
+    "bpm": 160,
+    "chain": 2153,
+    "composer": "ぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬ",
+    "notes_designer": "「みぞれ",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10109mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ラヴィ",
+    "bpm": 183,
+    "chain": 1879,
+    "composer": "すりぃ",
+    "notes_designer": "Jack",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10107mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "最終鬼畜妹フランドール・S(Chroma Remix)",
+    "bpm": 200,
+    "chain": 3025,
+    "composer": "ビートまりお × 黒魔",
+    "notes_designer": "ミニミライト",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10110mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
+  },
+  {
+    "name": "RE Aoharu",
+    "bpm": 180,
+    "chain": 1677,
+    "composer": "Nor「ブルーアーカイブ -Blue Archive-」",
+    "notes_designer": "Where All Miracles Begin",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10111mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Unwelcome School",
+    "bpm": 180,
+    "chain": 1615,
+    "composer": "Mitsukiyo「ブルーアーカイブ -Blue Archive-」",
+    "notes_designer": "そらいろカリン（アルバイト）",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10112mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "彩りキャンバス",
+    "bpm": 180,
+    "chain": 2113,
+    "composer": "Mitsukiyo「ブルーアーカイブ -Blue Archive-」",
+    "notes_designer": "Moon Strix（バンド）",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10113mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "単位がない！",
+    "bpm": 190,
+    "chain": 2771,
+    "composer": "五十嵐 撫子(CV:花井 美春)",
+    "notes_designer": "ロシェ＠再履修",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10115mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
   }
 ]
