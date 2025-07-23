@@ -20381,5 +20381,27 @@
     "url": "https://sdvx.in//chunithm/10/10115mst.htm",
     "genre": "irodorimidori",
     "diff": "MAS"
+  },
+  {
+    "name": "sølips",
+    "bpm": 199,
+    "chain": 2846,
+    "composer": "rintaro soma",
+    "notes_designer": "...Who are you?",
+    "level": "蔵5",
+    "url": "https://sdvx.in//chunithm/end/08205end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "Kattobi KEIKYU Rider",
+    "bpm": 220,
+    "chain": 5266,
+    "composer": "Sampling Masters MEGA",
+    "notes_designer": "ダァシェリエス...",
+    "level": "翔3",
+    "url": "https://sdvx.in//chunithm/end/03023end.htm",
+    "genre": "end",
+    "diff": "WE"
   }
 ]
