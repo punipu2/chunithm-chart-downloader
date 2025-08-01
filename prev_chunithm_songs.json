@@ -20403,5 +20403,60 @@
     "url": "https://sdvx.in//chunithm/end/03023end.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "え？あぁ、そう。- 10th Anniversary Edition -",
+    "bpm": 192,
+    "chain": 1811,
+    "composer": "蝶々P",
+    "notes_designer": "ミストルティン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10129mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ブタサンダー",
+    "bpm": 145,
+    "chain": 1724,
+    "composer": "ゆこぴ",
+    "notes_designer": "そらいろカリン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10126mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "少女A",
+    "bpm": 260,
+    "chain": 1667,
+    "composer": "椎名もた",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10128mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "私の歯医者さん",
+    "bpm": 147,
+    "chain": 1308,
+    "composer": "ゆこぴ",
+    "notes_designer": "じゃこレモン＠親知らず抜いた",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10127mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "Individual on parade!",
+    "bpm": 172,
+    "chain": 1810,
+    "composer": "曲：渡部チェル／歌：珠洲島 有栖(CV：長縄 まりあ)、皇城 セツナ(CV：八巻 アンナ)、柏木 咲姫(CV：石見 舞菜香)、日向 千夏(CV：岡咲 美保)、井之原 小星(CV：ももの はるな)",
+    "notes_designer": "ミニミライト＠can go to the next stage!!",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10130mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
   }
 ]
