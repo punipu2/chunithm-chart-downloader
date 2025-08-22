@@ -20513,5 +20513,60 @@
     "url": "https://sdvx.in//chunithm/10/10132mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "1番輝く星",
+    "bpm": 182,
+    "chain": 1198,
+    "composer": "アーリャ（CV：上坂すみれ）「時々ボソッとロシア語でデレる隣のアーリャさん」",
+    "notes_designer": "пингвин",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10136mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "うい麦畑でつかまえて",
+    "bpm": 168,
+    "chain": 2304,
+    "composer": "しぐれうい",
+    "notes_designer": "そらいろカリン",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10137mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "きゅびずむ",
+    "bpm": 185,
+    "chain": 1598,
+    "composer": "超てんちゃん",
+    "notes_designer": "ミニミライト",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10138mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "きゅびびびびずむ",
+    "bpm": 185,
+    "chain": 2848,
+    "composer": "超てんちゃん",
+    "notes_designer": "譜面MADとよばれるもの",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10139mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "幽霊船戦",
+    "bpm": 160,
+    "chain": 1654,
+    "composer": "宝鐘マリン（ホロライブ）",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10140mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
   }
 ]
