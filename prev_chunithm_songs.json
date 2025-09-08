@@ -20568,5 +20568,60 @@
     "url": "https://sdvx.in//chunithm/10/10140mst.htm",
     "genre": "pops",
     "diff": "MAS"
+  },
+  {
+    "name": "Burn!!!",
+    "bpm": 150,
+    "chain": 1815,
+    "composer": "藤堂 陽南袴(CV:八島 さらら)",
+    "notes_designer": "じゃこレモン!!!",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10141mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
+    "name": "内臓♡マニピ",
+    "bpm": 120,
+    "chain": 1912,
+    "composer": "Kijibato feat. をとは",
+    "notes_designer": "ロシェ＠要検査",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10142mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Steamed on the Beat",
+    "bpm": 164,
+    "chain": 1560,
+    "composer": "電気式華憐音楽集団",
+    "notes_designer": "ミニミライト＠デンカリスト",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10143mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Challenger!!",
+    "bpm": 130,
+    "chain": 1674,
+    "composer": "シャティ",
+    "notes_designer": "ぴちネコ",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10144mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Everything Will Be One",
+    "bpm": 170,
+    "chain": 3000,
+    "composer": "void (Mournfinale)",
+    "notes_designer": "TraNsforM “STAR”",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10145mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
