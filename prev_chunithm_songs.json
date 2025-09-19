@@ -20623,5 +20623,93 @@
     "url": "https://sdvx.in//chunithm/10/10145mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "オブソミート",
+    "bpm": 158,
+    "chain": 1516,
+    "composer": "サツキ",
+    "notes_designer": "アミノハバキリ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10147mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "カルチャ",
+    "bpm": 172,
+    "chain": 2187,
+    "composer": "ツミキ",
+    "notes_designer": "ミストルティン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10149mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "スーパーヒーロー",
+    "bpm": 132,
+    "chain": 1400,
+    "composer": "Guiano",
+    "notes_designer": "イノシカ提灯",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10148mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "スパイダーダンス",
+    "bpm": 115,
+    "chain": 1276,
+    "composer": "Toby Fox「UNDERTALE」",
+    "notes_designer": "アミノハバキリ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10150mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ずんだシェイキング",
+    "bpm": 140,
+    "chain": 1394,
+    "composer": "なみぐる",
+    "notes_designer": "みぞれヤナギ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10146mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "夢と希望",
+    "bpm": 171,
+    "chain": 2420,
+    "composer": "Toby Fox「UNDERTALE」",
+    "notes_designer": "＊おわりだ。",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10151mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "M.L.V.G",
+    "bpm": 190,
+    "chain": 2919,
+    "composer": "テトラルキア「Re:ステージ！プリズムステップ」",
+    "notes_designer": "せーので跳べ！",
+    "level": "new跳4",
+    "url": "https://sdvx.in//chunithm/end/09133end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "MEGALOVANIA",
+    "bpm": 240,
+    "chain": 3982,
+    "composer": "Toby Fox「UNDERTALE」",
+    "notes_designer": "じごくでもえてしまえばいい",
+    "level": "new避4",
+    "url": "https://sdvx.in//chunithm/end/07045end.htm",
+    "genre": "end",
+    "diff": "WE"
   }
 ]
