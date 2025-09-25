@@ -20711,5 +20711,115 @@
     "url": "https://sdvx.in//chunithm/end/07045end.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "Change Our MIRAI！",
+    "bpm": 256,
+    "chain": 2250,
+    "composer": "イロドリミドリ",
+    "notes_designer": "ぴちネコ 10th Anniversary",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/01050ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "First Twinkle",
+    "bpm": 154,
+    "chain": 2050,
+    "composer": "折戸伸治 feat.北沢綾香",
+    "notes_designer": "サファ太",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/ult/02020ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "Hyperion",
+    "bpm": 155,
+    "chain": 2035,
+    "composer": "Maozon",
+    "notes_designer": "アミノハバキリ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/02046ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "Invitation",
+    "bpm": 147,
+    "chain": 1517,
+    "composer": "れるりり feat.ろん",
+    "notes_designer": "Welcome to CHUNITHM 10th Anniv!",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/ult/01052ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "luna blu",
+    "bpm": 160,
+    "chain": 2000,
+    "composer": "WASi303",
+    "notes_designer": "Grim Shooter Lemon",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/ult/01072ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "MUSIC PЯAYER",
+    "bpm": 168,
+    "chain": 2585,
+    "composer": "A-One",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/01136ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "Teriqma",
+    "bpm": 128,
+    "chain": 2046,
+    "composer": "owl＊tree",
+    "notes_designer": "アミノハバキリ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/01066ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "WE GOTTA SOUL",
+    "bpm": 170,
+    "chain": 1804,
+    "composer": "魂音泉",
+    "notes_designer": "みぞれヤナギ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/ult/03020ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "ハルシナイト",
+    "bpm": 128,
+    "chain": 1549,
+    "composer": "かしこ。 feat.Cereus",
+    "notes_designer": "Revo@LC",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/ult/06099ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "最愛テトラグラマトン",
+    "bpm": 176,
+    "chain": 2070,
+    "composer": "片霧烈火",
+    "notes_designer": "ミニミライト＠みんマンション",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/ult/02102ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
   }
 ]
