@@ -20821,5 +20821,60 @@
     "url": "https://sdvx.in//chunithm/ult/02102ult.htm",
     "genre": "ultima",
     "diff": "ULT"
+  },
+  {
+    "name": "ソウルのピース",
+    "bpm": 146,
+    "chain": 1338,
+    "composer": "葛城 華(CV:丸岡 和佳奈)",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10152mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
+    "name": "OUTRAGE",
+    "bpm": 215,
+    "chain": 3262,
+    "composer": "USAO vs DJ Myosuke",
+    "notes_designer": "TraNsforM “AMAZON”",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10156mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "システム",
+    "bpm": 141,
+    "chain": 1400,
+    "composer": "大漠波新 feat.ウォルピスカーター",
+    "notes_designer": "じゃこレモン",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10154mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "ナラク・オン・エア",
+    "bpm": 220,
+    "chain": 2078,
+    "composer": "吉田夜世 feat.棗いつき",
+    "notes_designer": "ミニミライト",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10153mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "恋伯色",
+    "bpm": 186,
+    "chain": 1787,
+    "composer": "瀬名水紀 feat.六宮",
+    "notes_designer": "夕凪アロエ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10155mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
