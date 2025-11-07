@@ -20942,5 +20942,71 @@
     "url": "https://sdvx.in//chunithm/10/10162mst.htm",
     "genre": "gekimai",
     "diff": "MAS"
+  },
+  {
+    "name": "Hardsync",
+    "bpm": 200,
+    "chain": 2592,
+    "composer": "桔梗 小夜曲(CV:原田彩楓)",
+    "notes_designer": "ミストルティン＆夕凪アロエ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10163mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
+    "name": "しとしとと",
+    "bpm": 215,
+    "chain": 2330,
+    "composer": "t+pazolite",
+    "notes_designer": "イノシカ提灯",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10164mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "In the Straying Story",
+    "bpm": 192,
+    "chain": 2380,
+    "composer": "polysha",
+    "notes_designer": "inoshika-Morpho",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10166mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "PhenomenoN",
+    "bpm": 174,
+    "chain": 2131,
+    "composer": "Laur feat.Tia",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10167mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Warp Speed",
+    "bpm": 174,
+    "chain": 1804,
+    "composer": "Nhato",
+    "notes_designer": "Jack",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10165mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "輪廻玲々",
+    "bpm": 188,
+    "chain": 2928,
+    "composer": "suzu",
+    "notes_designer": "TraNsforM “CRYSTAL”",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10168mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
