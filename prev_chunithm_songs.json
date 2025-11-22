@@ -21008,5 +21008,93 @@
     "url": "https://sdvx.in//chunithm/10/10168mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "ウィーアーピコピコハンマーズ!!!!",
+    "bpm": 202,
+    "chain": 2211,
+    "composer": "cosMo＠暴走P",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10170mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ジェットブラック",
+    "bpm": 170,
+    "chain": 1738,
+    "composer": "雄之助",
+    "notes_designer": "夕凪アロエ",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10171mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "トレジャーガーデン",
+    "bpm": 268,
+    "chain": 1885,
+    "composer": "Ponchi♪ feat.初音ミク",
+    "notes_designer": "イノシカ提灯",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10172mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "最愛人生ランナー",
+    "bpm": 180,
+    "chain": 2039,
+    "composer": "かいりきベア",
+    "notes_designer": "ミニミライト",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10169mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "電光刹歌",
+    "bpm": 207,
+    "chain": 2090,
+    "composer": "かめりあ",
+    "notes_designer": "ぴちネコ",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10173mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "可愛くてごめん",
+    "bpm": 160,
+    "chain": 2681,
+    "composer": "HoneyWorks feat. ちゅーたん(CV:早見沙織)",
+    "notes_designer": "狂っててごめん",
+    "level": "狂3",
+    "url": "https://sdvx.in//chunithm/end/09002end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "GIGA BLAST",
+    "bpm": 210,
+    "chain": 2924,
+    "composer": "Blacklolita",
+    "notes_designer": "蔵BLAST",
+    "level": "蔵4",
+    "url": "https://sdvx.in//chunithm/end/09062end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "Reach For The Stars",
+    "bpm": 203,
+    "chain": 1350,
+    "composer": "ソニック カラーズ",
+    "notes_designer": "SLIDE RACING",
+    "level": "速2",
+    "url": "https://sdvx.in//chunithm/end/01047end2.htm",
+    "genre": "end",
+    "diff": "WE"
   }
 ]
