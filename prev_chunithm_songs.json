@@ -21096,5 +21096,60 @@
     "url": "https://sdvx.in//chunithm/end/01047end2.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "Kaleidoscope",
+    "bpm": 150,
+    "chain": 2055,
+    "composer": "Lycoris in the parterre",
+    "notes_designer": "Twinrook",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10174mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Deep Blue",
+    "bpm": 236,
+    "chain": 4400,
+    "composer": "technoplanet feat. Tamako Kinoshita",
+    "notes_designer": "Ataraxia vs Ragnarok",
+    "level": "15+",
+    "url": "https://sdvx.in//chunithm/10/10176mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "DEvourER",
+    "bpm": 180,
+    "chain": 2500,
+    "composer": "ZxNX + Redsign",
+    "notes_designer": "Innovator Lemon",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/10/10177mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "hyperreality",
+    "bpm": 210,
+    "chain": 2940,
+    "composer": "tn-shi",
+    "notes_designer": "Piercing Blade",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10175mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "(仮)創-汝ら新世界へ歩む者なり-",
+    "bpm": 219,
+    "chain": 5000,
+    "composer": "BlackY VS Yooh VS siromaru VS xi VS モリモリあつし",
+    "notes_designer": "TraNsforM ”PARADISE”",
+    "level": "15+",
+    "url": "https://sdvx.in//chunithm/10/10178mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
