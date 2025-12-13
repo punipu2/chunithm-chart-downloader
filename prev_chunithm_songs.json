@@ -21151,5 +21151,148 @@
     "url": "https://sdvx.in//chunithm/10/10178mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "BOW AND ARROW（アニメ・オープニングver.）",
+    "bpm": 180,
+    "chain": 1068,
+    "composer": "米津玄師",
+    "notes_designer": "Luxizhel",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10179mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "キャンディークッキーチョコレート",
+    "bpm": 173,
+    "chain": 2154,
+    "composer": "はろける",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10186mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "化けの花",
+    "bpm": 180,
+    "chain": 1265,
+    "composer": "なきそ",
+    "notes_designer": "みぞれヤナギ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10185mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "AiAe",
+    "bpm": 180,
+    "chain": 2264,
+    "composer": "DJ'TEKINA//SOMETHING a.k.a ゆよゆっぺ",
+    "notes_designer": "Aloe Arborescens",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10188mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "ビッグブリッヂの死闘-シアトリズムFFAC Arrange- from FFV",
+    "bpm": 211,
+    "chain": 2372,
+    "composer": "SQUARE ENIX",
+    "notes_designer": "ミストルティン／すっぴんMASTER！",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10189mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "轆轤首",
+    "bpm": 218,
+    "chain": 3177,
+    "composer": "かねこちはる",
+    "notes_designer": "TraNsforM “NEW”",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10203mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "〚回帰〛 ～Scherzo~フォルトゥーナの悪戯~",
+    "bpm": 132,
+    "chain": 2088,
+    "composer": "MIssinoary & DCWH",
+    "notes_designer": "nelge-fondue",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10201mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "BOW AND ARROW（アニメ・オープニングver.）",
+    "bpm": 180,
+    "chain": 1118,
+    "composer": "米津玄師",
+    "notes_designer": "GOE+ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/ult/10179ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "キャンディークッキーチョコレート",
+    "bpm": 173,
+    "chain": 2111,
+    "composer": "はろける",
+    "notes_designer": "ミニミライト(▼w▼)",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/10186ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "化けの花",
+    "bpm": 180,
+    "chain": 1525,
+    "composer": "なきそ",
+    "notes_designer": "ミストルティン／みーんな いなくなれ",
+    "level": "14+",
+    "url": "https://sdvx.in//chunithm/ult/10185ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "I Wanna",
+    "bpm": 200,
+    "chain": 2354,
+    "composer": "静香（CV.長谷川育美）「ワールドダイスター 夢のステラリウム」",
+    "notes_designer": "OLIVIER X",
+    "level": "招5",
+    "url": "https://sdvx.in//chunithm/end/10079end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "Adverse Gaff",
+    "bpm": 160,
+    "chain": 1959,
+    "composer": "siromaru",
+    "notes_designer": "お覚悟を",
+    "level": "撃4",
+    "url": "https://sdvx.in//chunithm/end/09047end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "Teriqma",
+    "bpm": 128,
+    "chain": 2248,
+    "composer": "owl＊tree",
+    "notes_designer": "階段割qma",
+    "level": "割3",
+    "url": "https://sdvx.in//chunithm/end/01066end2.htm",
+    "genre": "end",
+    "diff": "WE"
   }
 ]
