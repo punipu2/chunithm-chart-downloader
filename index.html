@@ -329,11 +329,12 @@
 
     function createUpdateContent(title, items, useDetails = false) {
       if (useDetails) {
+        // 過去分
         const details = document.createElement('details');
         details.style.margin = '0.5em 0 0.5em 1em';
 
         const summary = document.createElement('summary');
-        summary.textContent = `${title}（${items.length}譜面）`;
+        summary.textContent = `${title}`;
         summary.style.cursor = 'pointer';
         summary.style.fontWeight = 'bold';
 
@@ -341,10 +342,11 @@
         details.appendChild(createSongList(items));
         return details;
       } else {
+        // 直近
         const wrapper = document.createElement('div');
 
         const header = document.createElement('div');
-        header.textContent = `${title}（${items.length}譜面）`;
+        header.textContent = `${title}`;
         header.style.fontWeight = 'bold';
         header.style.margin = '0.5em 0';
 
