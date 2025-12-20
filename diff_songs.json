@@ -1,188 +1,342 @@
-[
-  {
-    "name": "Ave Mujica",
-    "diff": "MAS",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/10/10180mst.htm"
-  },
-  {
-    "name": "BOW AND ARROW（アニメ・オープニングver.）",
-    "diff": "MAS",
-    "level": "13",
-    "url": "https://sdvx.in//chunithm/10/10179mst.htm"
-  },
-  {
-    "name": "KiLLKiSS",
-    "diff": "MAS",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/10/10181mst.htm"
-  },
-  {
-    "name": "キャンディークッキーチョコレート",
-    "diff": "MAS",
-    "level": "13",
-    "url": "https://sdvx.in//chunithm/10/10186mst.htm"
-  },
-  {
-    "name": "化けの花",
-    "diff": "MAS",
-    "level": "13+",
-    "url": "https://sdvx.in//chunithm/10/10185mst.htm"
-  },
-  {
-    "name": "Ultimate taste",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10187mst.htm"
-  },
-  {
-    "name": "AiAe",
-    "diff": "MAS",
-    "level": "15",
-    "url": "https://sdvx.in//chunithm/10/10188mst.htm"
-  },
-  {
-    "name": "Angelic Layer",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10191mst.htm"
-  },
-  {
-    "name": "MORNINGLOOM",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10190mst.htm"
-  },
-  {
-    "name": "ビッグブリッヂの死闘-シアトリズムFFAC Arrange- from FFV",
-    "diff": "MAS",
-    "level": "15",
-    "url": "https://sdvx.in//chunithm/10/10189mst.htm"
-  },
-  {
-    "name": "当たり前田の小野美苗",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10192mst.htm"
-  },
-  {
-    "name": "BIRTH",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10193mst.htm"
-  },
-  {
-    "name": "Starlight★Limited",
-    "diff": "MAS",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/10/10195mst.htm"
-  },
-  {
-    "name": "☆をつなぐシュトラール",
-    "diff": "MAS",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/10/10199mst.htm"
-  },
-  {
-    "name": "MOMOCO68000",
-    "diff": "MAS",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/10/10200mst.htm"
-  },
-  {
-    "name": "Road to Aventura",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10198mst.htm"
-  },
-  {
-    "name": "tHE uNcontRollaBle ciNdeRella",
-    "diff": "MAS",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/10/10202mst.htm"
-  },
-  {
-    "name": "轆轤首",
-    "diff": "MAS",
-    "level": "15",
-    "url": "https://sdvx.in//chunithm/10/10203mst.htm"
-  },
-  {
-    "name": "〚回帰〛 ～Scherzo~フォルトゥーナの悪戯~",
-    "diff": "MAS",
-    "level": "15",
-    "url": "https://sdvx.in//chunithm/10/10201mst.htm"
-  },
-  {
-    "name": "一旦ステイ TONIGHT",
-    "diff": "MAS",
-    "level": "13+",
-    "url": "https://sdvx.in//chunithm/10/10183mst.htm"
-  },
-  {
-    "name": "怪獣",
-    "diff": "MAS",
-    "level": "12+",
-    "url": "https://sdvx.in//chunithm/10/10182mst.htm"
-  },
-  {
-    "name": "モニタリング",
-    "diff": "MAS",
-    "level": "13",
-    "url": "https://sdvx.in//chunithm/10/10184mst.htm"
-  },
-  {
-    "name": "WakeUP MakeUP FEVER!",
-    "diff": "MAS",
-    "level": "12+",
-    "url": "https://sdvx.in//chunithm/10/10194mst.htm"
-  },
-  {
-    "name": "ジナ",
-    "diff": "MAS",
-    "level": "13+",
-    "url": "https://sdvx.in//chunithm/10/10197mst.htm"
-  },
-  {
-    "name": "魔法に照らされたアンコール",
-    "diff": "MAS",
-    "level": "13",
-    "url": "https://sdvx.in//chunithm/10/10196mst.htm"
-  },
-  {
-    "name": "BOW AND ARROW（アニメ・オープニングver.）",
-    "diff": "ULT",
-    "level": "14",
-    "url": "https://sdvx.in//chunithm/ult/10179ult.htm"
-  },
-  {
-    "name": "キャンディークッキーチョコレート",
-    "diff": "ULT",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/ult/10186ult.htm"
-  },
-  {
-    "name": "化けの花",
-    "diff": "ULT",
-    "level": "14+",
-    "url": "https://sdvx.in//chunithm/ult/10185ult.htm"
-  },
-  {
-    "name": "I Wanna",
-    "diff": "WE",
-    "level": "招5",
-    "url": "https://sdvx.in//chunithm/end/10079end.htm"
-  },
-  {
-    "name": "Adverse Gaff",
-    "diff": "WE",
-    "level": "撃4",
-    "url": "https://sdvx.in//chunithm/end/09047end.htm"
-  },
-  {
-    "name": "Teriqma",
-    "diff": "WE",
-    "level": "割3",
-    "url": "https://sdvx.in//chunithm/end/01066end2.htm"
-  }
-]
+{
+  "X-VERSE - 2025/11/6 追加分": [
+    {
+      "name": "Hardsync",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10163mst.htm"
+    },
+    {
+      "name": "しとしとと",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10164mst.htm"
+    },
+    {
+      "name": "In the Straying Story",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10166mst.htm"
+    },
+    {
+      "name": "PhenomenoN",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10167mst.htm"
+    },
+    {
+      "name": "Warp Speed",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10165mst.htm"
+    },
+    {
+      "name": "輪廻玲々",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10168mst.htm"
+    }
+  ],
+  "X-VERSE - 2025/11/20 追加分": [
+    {
+      "name": "ウィーアーピコピコハンマーズ!!!!",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10170mst.htm"
+    },
+    {
+      "name": "ジェットブラック",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10171mst.htm"
+    },
+    {
+      "name": "トレジャーガーデン",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10172mst.htm"
+    },
+    {
+      "name": "最愛人生ランナー",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10169mst.htm"
+    },
+    {
+      "name": "電光刹歌",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10173mst.htm"
+    },
+    {
+      "name": "可愛くてごめん",
+      "diff": "WE",
+      "level": "狂3",
+      "url": "https://sdvx.in//chunithm/end/09002end.htm"
+    },
+    {
+      "name": "GIGA BLAST",
+      "diff": "WE",
+      "level": "蔵4",
+      "url": "https://sdvx.in//chunithm/end/09062end.htm"
+    },
+    {
+      "name": "Reach For The Stars",
+      "diff": "WE",
+      "level": "速2",
+      "url": "https://sdvx.in//chunithm/end/01047end2.htm"
+    }
+  ],
+  "X-VERSE - 2025/11/27 追加分": [
+    {
+      "name": "Kaleidoscope",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10174mst.htm"
+    },
+    {
+      "name": "Deep Blue",
+      "diff": "MAS",
+      "level": "15+",
+      "url": "https://sdvx.in//chunithm/10/10176mst.htm"
+    },
+    {
+      "name": "DEvourER",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10177mst.htm"
+    },
+    {
+      "name": "hyperreality",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10175mst.htm"
+    },
+    {
+      "name": "創-汝ら新世界へ歩む者なり-",
+      "diff": "MAS",
+      "level": "15+",
+      "url": "https://sdvx.in//chunithm/10/10178mst.htm"
+    }
+  ],
+  "X-VERSE-X - 2025/12/11 追加分": [
+    {
+      "name": "Ave Mujica",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10180mst.htm"
+    },
+    {
+      "name": "BOW AND ARROW（アニメ・オープニングver.）",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10179mst.htm"
+    },
+    {
+      "name": "KiLLKiSS",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10181mst.htm"
+    },
+    {
+      "name": "キャンディークッキーチョコレート",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10186mst.htm"
+    },
+    {
+      "name": "化けの花",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10185mst.htm"
+    },
+    {
+      "name": "Ultimate taste",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10187mst.htm"
+    },
+    {
+      "name": "AiAe",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10188mst.htm"
+    },
+    {
+      "name": "Angelic Layer",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10191mst.htm"
+    },
+    {
+      "name": "MORNINGLOOM",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10190mst.htm"
+    },
+    {
+      "name": "ビッグブリッヂの死闘-シアトリズムFFAC Arrange- from FFV",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10189mst.htm"
+    },
+    {
+      "name": "当たり前田の小野美苗",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10192mst.htm"
+    },
+    {
+      "name": "BIRTH",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10193mst.htm"
+    },
+    {
+      "name": "Starlight★Limited",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10195mst.htm"
+    },
+    {
+      "name": "☆をつなぐシュトラール",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10199mst.htm"
+    },
+    {
+      "name": "MOMOCO68000",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10200mst.htm"
+    },
+    {
+      "name": "Road to Aventura",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10198mst.htm"
+    },
+    {
+      "name": "tHE uNcontRollaBle ciNdeRella",
+      "diff": "MAS",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/10/10202mst.htm"
+    },
+    {
+      "name": "轆轤首",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10203mst.htm"
+    },
+    {
+      "name": "〚回帰〛 ～Scherzo~フォルトゥーナの悪戯~",
+      "diff": "MAS",
+      "level": "15",
+      "url": "https://sdvx.in//chunithm/10/10201mst.htm"
+    },
+    {
+      "name": "一旦ステイ TONIGHT",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10183mst.htm"
+    },
+    {
+      "name": "怪獣",
+      "diff": "MAS",
+      "level": "12+",
+      "url": "https://sdvx.in//chunithm/10/10182mst.htm"
+    },
+    {
+      "name": "モニタリング",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10184mst.htm"
+    },
+    {
+      "name": "WakeUP MakeUP FEVER!",
+      "diff": "MAS",
+      "level": "12+",
+      "url": "https://sdvx.in//chunithm/10/10194mst.htm"
+    },
+    {
+      "name": "ジナ",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10197mst.htm"
+    },
+    {
+      "name": "魔法に照らされたアンコール",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10196mst.htm"
+    },
+    {
+      "name": "BOW AND ARROW（アニメ・オープニングver.）",
+      "diff": "ULT",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/ult/10179ult.htm"
+    },
+    {
+      "name": "キャンディークッキーチョコレート",
+      "diff": "ULT",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/ult/10186ult.htm"
+    },
+    {
+      "name": "化けの花",
+      "diff": "ULT",
+      "level": "14+",
+      "url": "https://sdvx.in//chunithm/ult/10185ult.htm"
+    },
+    {
+      "name": "I Wanna",
+      "diff": "WE",
+      "level": "招5",
+      "url": "https://sdvx.in//chunithm/end/10079end.htm"
+    },
+    {
+      "name": "Adverse Gaff",
+      "diff": "WE",
+      "level": "撃4",
+      "url": "https://sdvx.in//chunithm/end/09047end.htm"
+    },
+    {
+      "name": "Teriqma",
+      "diff": "WE",
+      "level": "割3",
+      "url": "https://sdvx.in//chunithm/end/01066end2.htm"
+    }
+  ],
+  "X-VERSE-X - 2025/12/18 追加分": [
+    {
+      "name": "Edelied",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10205mst.htm"
+    },
+    {
+      "name": "アイドゥーミー！",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in//chunithm/10/10204mst.htm"
+    },
+    {
+      "name": "バカ通信",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10207mst.htm"
+    },
+    {
+      "name": "㋰責任集合体",
+      "diff": "MAS",
+      "level": "13",
+      "url": "https://sdvx.in//chunithm/10/10206mst.htm"
+    },
+    {
+      "name": "ヤババイナ",
+      "diff": "MAS",
+      "level": "14",
+      "url": "https://sdvx.in//chunithm/10/10208mst.htm"
+    }
+  ]
+}

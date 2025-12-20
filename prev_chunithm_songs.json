@@ -21492,5 +21492,60 @@
     "url": "https://sdvx.in//chunithm/end/01066end2.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "Edelied",
+    "bpm": 173,
+    "chain": 1827,
+    "composer": "Edel Note[セラス 柳田 リリエンフェルト (CV. 三宅美羽)、桂城泉(CV.進藤あまね)]「Link! Like! ラブライブ!」",
+    "notes_designer": "ミニミライト＠気高く響け Edel Note",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10205mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "アイドゥーミー！",
+    "bpm": 185,
+    "chain": 1345,
+    "composer": "蓮ノ空女学院スクールアイドルクラブ「Link! Like! ラブライブ!」",
+    "notes_designer": "ロシェ＠星に憧れて、花は舞う",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10204mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "バカ通信",
+    "bpm": 240,
+    "chain": 2231,
+    "composer": "isonosuke",
+    "notes_designer": "バカペンギン",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10207mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "㋰責任集合体",
+    "bpm": 135,
+    "chain": 1756,
+    "composer": "マサラダ",
+    "notes_designer": "イノシカ提灯",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10206mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ヤババイナ",
+    "bpm": 200,
+    "chain": 2459,
+    "composer": "さたぱんP",
+    "notes_designer": "じゃこレモン(_ _).｡o○",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10208mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
   }
 ]

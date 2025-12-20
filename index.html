@@ -42,7 +42,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.1.14</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.2.0</span></h1>
 
     <div class="section">
       <div class="note">
@@ -75,7 +75,13 @@
         <summary style="cursor:pointer; font-weight:bold;">
           最近追加された譜面:
         </summary>
-        <ul id="recentList" style="list-style:none; padding:0; margin-top:0.5em;"></ul>
+        <div id="recentContainer"></div>
+      </details>
+      <details id="recentArchiveSongs" style="margin: 1em 0;">
+        <summary style="cursor:pointer;">
+          過去に追加された譜面:
+        </summary>
+        <div id="recentArchiveContainer"></div>
       </details>
 
       <button class="save" onclick="fetchAndSaveChart()">📥 譜面を見る</button>
@@ -83,7 +89,7 @@
     </div>
 
     <div class="note">
-      ・2025/12/15時点で登録されている譜面に対応しました。<br>
+      ・2025/12/19時点で登録されている譜面に対応しました。<br>
       ・スペース有無を無視した検索に対応しています。<br>
       ・一部保存できない譜面があります。ご了承ください。
     </div>
@@ -321,35 +327,87 @@
       }
     }
 
+    function createUpdateContent(title, items, useDetails = false) {
+      if (useDetails) {
+        const details = document.createElement('details');
+        details.style.margin = '0.5em 0 0.5em 1em';
+
+        const summary = document.createElement('summary');
+        summary.textContent = `${title}（${items.length}譜面）`;
+        summary.style.cursor = 'pointer';
+        summary.style.fontWeight = 'bold';
+
+        details.appendChild(summary);
+        details.appendChild(createSongList(items));
+        return details;
+      } else {
+        const wrapper = document.createElement('div');
+
+        const header = document.createElement('div');
+        header.textContent = `${title}（${items.length}譜面）`;
+        header.style.fontWeight = 'bold';
+        header.style.margin = '0.5em 0';
+
+        wrapper.appendChild(header);
+        wrapper.appendChild(createSongList(items));
+        return wrapper;
+      }
+    }
+
+    function createSongList(items) {
+      const ul = document.createElement('ul');
+      ul.style.listStyle = 'none';
+      ul.style.padding = '0';
+
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'suggestion-item';
+        li.innerHTML = `
+          <span class="diff-label" style="background:${getColor(item.diff)}">${item.diff}</span>
+          <span class="level-label">${item.level || '?'}</span>
+          <span class="song-title">${item.name}</span>
+        `;
+        li.onclick = () => {
+          search.value = item.name;
+          url.value = item.url;
+          highlightField('search');
+          highlightField('url');
+        };
+        ul.appendChild(li);
+      });
+
+      return ul;
+    }
+
     // diff_log.txt を読み込んで、最近の曲一覧を表示
     async function loadRecentSongs() {
       try {
-        const res    = await fetch('./diff_songs.json');
-        const recent = await res.json();
-        const ul     = document.getElementById('recentList');
-        ul.innerHTML = '';
+        const res = await fetch('./diff_songs.json');
+        const data = await res.json();
 
-        recent.forEach(item => {
-          const li = document.createElement('li');
-          // 既存のサジェストスタイルと同じクラス名があれば指定
-          li.classList.add('suggestion-item');
-          li.innerHTML = `
-            <span class="diff-label" style="background:${getColor(item.diff)}">
-              ${item.diff}
-            </span>
-            <span class="level-label">${item.level || '?'}</span>
-            <span class="song-title">${item.name}</span>
-          `;
-          li.style.padding = '0.5em';
-          li.style.cursor  = 'pointer';
-          li.addEventListener('click', () => {
-            document.getElementById('search').value = item.name;
-            document.getElementById('url').value    = item.url;
-            highlightField('search');
-            highlightField('url');
-          });
-          ul.appendChild(li);
+        const latestContainer = document.getElementById('recentContainer');
+        const archiveContainer = document.getElementById('recentArchiveContainer');
+        const recentDetails = document.getElementById('recentSongs');
+
+        latestContainer.innerHTML = '';
+        archiveContainer.innerHTML = '';
+
+        const titles = Object.keys(data).reverse(); // 新しい順
+        if (titles.length === 0) return;
+
+        // 直近の更新
+        const latestTitle = titles[0];
+        latestContainer.appendChild(
+          createUpdateContent(latestTitle, data[latestTitle], false)
+        );
+
+        // 過去分の更新
+        titles.slice(1).forEach(title => {
+          archiveContainer.appendChild(
+            createUpdateContent(title, data[title], true)
+          );
         });
+
       } catch (err) {
         console.error('diff_songs.json の読み込みに失敗:', err);
       }
