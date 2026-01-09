@@ -21547,5 +21547,60 @@
     "url": "https://sdvx.in//chunithm/10/10208mst.htm",
     "genre": "niconico",
     "diff": "MAS"
+  },
+  {
+    "name": "A-Yah-YAh-YaH-YAH!",
+    "bpm": 150,
+    "chain": 1884,
+    "composer": "凋叶棕 feat. めらみぽっぷ",
+    "notes_designer": "アミノハバキリ",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10209mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
+  },
+  {
+    "name": "New World",
+    "bpm": 195,
+    "chain": 2139,
+    "composer": "FELT",
+    "notes_designer": "イノシカ提灯",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10212mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
+  },
+  {
+    "name": "The Music of Violent Eating",
+    "bpm": 145,
+    "chain": 2018,
+    "composer": "Jerico",
+    "notes_designer": "みぞれヤナギ",
+    "level": "15",
+    "url": "https://sdvx.in//chunithm/10/10211mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
+  },
+  {
+    "name": "アマノジャクリバースfeat. ｙｔｒ",
+    "bpm": 160,
+    "chain": 1570,
+    "composer": "魂音泉",
+    "notes_designer": "リキバハノミア",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10210mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
+  },
+  {
+    "name": "メイドノココロハアヤツリドール",
+    "bpm": 128,
+    "chain": 1418,
+    "composer": "森羅万象",
+    "notes_designer": "じゃこレモン",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10213mst.htm",
+    "genre": "toho",
+    "diff": "MAS"
   }
 ]
