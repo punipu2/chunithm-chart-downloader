@@ -21646,5 +21646,60 @@
     "url": "https://sdvx.in//chunithm/10/10215mst.htm",
     "genre": "variety",
     "diff": "MAS"
+  },
+  {
+    "name": "ソレイユ",
+    "bpm": 145,
+    "chain": 1887,
+    "composer": "芒崎 奏(CV:立花 理香)",
+    "notes_designer": "Revo@LC",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10218mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
+    "name": "Aether Wind",
+    "bpm": 190,
+    "chain": 2183,
+    "composer": "OSTER project feat. 常盤ゆう",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10220mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Sweet & Sour",
+    "bpm": 170,
+    "chain": 2858,
+    "composer": "Sakuzyo or Sobrem",
+    "notes_designer": "TraNsforM “SUN”",
+    "level": "15+",
+    "url": "https://sdvx.in//chunithm/10/10222mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "そして春めくモノローグ",
+    "bpm": 192,
+    "chain": 1980,
+    "composer": "Qutabire feat.柚子花",
+    "notes_designer": "イノシカ提灯",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10221mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "天地のうた",
+    "bpm": 86,
+    "chain": 2105,
+    "composer": "駄菓子O型 feat.みょみょ",
+    "notes_designer": "ミストルティン",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10219mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
