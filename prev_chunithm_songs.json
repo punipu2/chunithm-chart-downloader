@@ -21701,5 +21701,104 @@
     "url": "https://sdvx.in//chunithm/10/10219mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "Behavior",
+    "bpm": 116,
+    "chain": 2131,
+    "composer": "花鋏キョウ",
+    "notes_designer": "ミストルティン／Myosotis",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10225mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "はっぴーでいず！",
+    "bpm": 226,
+    "chain": 2325,
+    "composer": "獅子神レオナ",
+    "notes_designer": "ものくろっく 星言葉:自らに厳しい向上心",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10224mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "もっと！",
+    "bpm": 184,
+    "chain": 1909,
+    "composer": "花鋏キョウ、獅子神レオナ、水瓶ミア、夢川かなう",
+    "notes_designer": "ロシェ↑ペンギン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10223mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "LEMON MELON COOKIE",
+    "bpm": 180,
+    "chain": 1710,
+    "composer": "TAK",
+    "notes_designer": "じゃこレモン",
+    "level": "12+",
+    "url": "https://sdvx.in//chunithm/10/10227mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "M@GICAL☆CURE! LOVE ♥ SHOT!",
+    "bpm": 192,
+    "chain": 2139,
+    "composer": "SAWTOWNE",
+    "notes_designer": "みぞれヤナギ",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10226mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "Campus mode!!",
+    "bpm": 183,
+    "chain": 2209,
+    "composer": "歌：初星学園 作詞作曲：田淵智也 編曲：滝澤俊輔（TRYTONELABO）「学園アイドルマスター」",
+    "notes_designer": "夕凪アロエでもういっちょ！",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/ult/10001ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "J219",
+    "bpm": 147,
+    "chain": 1219,
+    "composer": "Cranky",
+    "notes_designer": "J1219",
+    "level": "狂1",
+    "url": "https://sdvx.in//chunithm/end/07132end.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "volcanic",
+    "bpm": 191,
+    "chain": 2306,
+    "composer": "DETRO a.k.a ルゼ",
+    "notes_designer": "ダメージのーツが君に襲い掛かる！",
+    "level": "避4",
+    "url": "https://sdvx.in//chunithm/end/03172end3.htm",
+    "genre": "end",
+    "diff": "WE"
+  },
+  {
+    "name": "Fighting My Way",
+    "bpm": 132,
+    "chain": 1005,
+    "composer": "歌：花海咲季 (CV. 長月あおい) 作詞：HIROMI　作曲・編曲：Giga「学園アイドルマスター」",
+    "notes_designer": "行こう空の上まで",
+    "level": "戻2",
+    "url": "https://sdvx.in//chunithm/end/10002end.htm",
+    "genre": "end",
+    "diff": "WE"
   }
 ]
