@@ -21802,6 +21802,50 @@
     "diff": "WE"
   },
   {
+    "name": "Chasing destiny",
+    "bpm": 186,
+    "chain": 2118,
+    "composer": "涼宮ハルヒ(CV.平野綾)",
+    "notes_designer": "イノシカ提灯",
+    "level": "14",
+    "url": "https://sdvx.in//chunithm/10/10229mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Colorful Starting Line",
+    "bpm": 162,
+    "chain": 1676,
+    "composer": "涼宮ハルヒ(CV.平野綾)",
+    "notes_designer": "アミノハバキリ",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10230mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "無敵的ハピネス！(SOS団5人Ver.)",
+    "bpm": 185,
+    "chain": 1527,
+    "composer": "涼宮ハルヒ(CV.平野綾),長門有希(CV.茅原実里),朝比奈みくる(CV.後藤邑子)、キョン(CV.杉田智和)、古泉一樹(CV.小野大輔)",
+    "notes_designer": "世界を大いに盛り上げるためのじゃこレモン",
+    "level": "13",
+    "url": "https://sdvx.in//chunithm/10/10228mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Future Refrain",
+    "bpm": 120,
+    "chain": 1519,
+    "composer": "萩原 七々瀬(CV:東城 日沙子)",
+    "notes_designer": "イノシカ提灯",
+    "level": "13+",
+    "url": "https://sdvx.in//chunithm/10/10231mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
     "name": "THE TRiANGLE",
     "bpm": 230,
     "chain": 2709,
