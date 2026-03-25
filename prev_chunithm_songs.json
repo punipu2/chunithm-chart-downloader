@@ -21921,5 +21921,27 @@
     "url": "https://sdvx.in//chunithm/10/10236mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "DataErr0r",
+    "bpm": 180,
+    "chain": 1937,
+    "composer": "Lunatic Sounds",
+    "notes_designer": "[!!Data41o3!!]",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/ult/02013ult.htm",
+    "genre": "variety",
+    "diff": "ULT"
+  },
+  {
+    "name": "Parousia",
+    "bpm": 158,
+    "chain": 1927,
+    "composer": "xi",
+    "notes_designer": "APOCALYPSIS ENSIS",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/ult/04051ult.htm",
+    "genre": "variety",
+    "diff": "ULT"
   }
 ]
