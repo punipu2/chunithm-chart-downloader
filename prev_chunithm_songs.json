@@ -22020,5 +22020,49 @@
     "url": "https://sdvx.in/chunithm/end/10242end.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "God only knows",
+    "bpm": 170,
+    "chain": 1517,
+    "composer": "A-One",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10245mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "New Starlight",
+    "bpm": 155,
+    "chain": 1317,
+    "composer": "DiGiTAL WiNG",
+    "notes_designer": "アミノハバキリ",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/10/10246mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "バンバード～Piano Version～",
+    "bpm": 144,
+    "chain": 1684,
+    "composer": "mozell",
+    "notes_designer": "ミニミライト",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10243mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "無双の咆哮Warcry Overload",
+    "bpm": 185,
+    "chain": 1839,
+    "composer": "永田泰之",
+    "notes_designer": "イノシカ提灯",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10244mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
   }
 ]
