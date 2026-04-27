@@ -22064,5 +22064,170 @@
     "url": "https://sdvx.in/chunithm/10/10244mst.htm",
     "genre": "variety",
     "diff": "MAS"
+  },
+  {
+    "name": "ALTER EGO",
+    "bpm": 195,
+    "chain": 2660,
+    "composer": "Yuta Imai vs Qlarabelle「Arcaea」",
+    "notes_designer": "MinimiLight vs BlackSoft",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10262mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "DESTRUCTION 3,2,1",
+    "bpm": 321,
+    "chain": 3210,
+    "composer": "Normal1zer vs. Broken Nerdz「Phigros」",
+    "notes_designer": "NOteS Crashed. May we meet again in CHUNITHM. -M*st*lte*nn-",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10260mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "glory MAX-to the MAXimum-",
+    "bpm": 190,
+    "chain": 2159,
+    "composer": "TAK",
+    "notes_designer": "Jack",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10259mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Marigold",
+    "bpm": 160,
+    "chain": 1991,
+    "composer": "M2U / Arranger: M2U, NICODE / Vocal: Guriri, M2U 「DEEMO」",
+    "notes_designer": "“Goodbye” - Morpho, Mizore",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10258mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Re：Re",
+    "bpm": 222,
+    "chain": 2380,
+    "composer": "モリモリあつし vs. uma「Muse Dash」",
+    "notes_designer": "みぞれヤナギ vs. サファ太",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10261mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "聖者の息吹",
+    "bpm": 180,
+    "chain": 1509,
+    "composer": "世阿弥 vs Tatsh「グルーヴコースター」",
+    "notes_designer": "夕凪アロエ／聖者たんﾊｧﾊｧ",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10255mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "超MANJIラッシュ",
+    "bpm": 205,
+    "chain": 2452,
+    "composer": "Massive New Krew「WACCA」",
+    "notes_designer": "BELiZHEL & MANJi Man",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10256mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "†渚の小悪魔ラヴリィ～レイディオ†",
+    "bpm": 190,
+    "chain": 1611,
+    "composer": "夏色ビキニのPrim",
+    "notes_designer": "空色バーニングラブ☆Karin",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10254mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "PANDORA PARADOXXX",
+    "bpm": 150,
+    "chain": 3414,
+    "composer": "削除",
+    "notes_designer": "Infected ”PARADOXXX”",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/10/10252mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "μ3",
+    "bpm": 192,
+    "chain": 3268,
+    "composer": "水野健治 VS 穴山大輔",
+    "notes_designer": "Redarrow O.N.G.E.K.I. Origin",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/10/10253mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "Beenden",
+    "bpm": 202,
+    "chain": 2512,
+    "composer": "隣の庭は青い(庭師+Aoi)",
+    "notes_designer": "みぞれヤナギ",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10247mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "EFX",
+    "bpm": 128,
+    "chain": 1316,
+    "composer": "Avans",
+    "notes_designer": "ミニミライト",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/10/10248mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "YOUNITHM",
+    "bpm": 260,
+    "chain": 3045,
+    "composer": "大国奏音",
+    "notes_designer": "Trajectory of “Linked VERSE”",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/10/10251mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "月葬",
+    "bpm": 190,
+    "chain": 3341,
+    "composer": "黒魔 × rintaro soma",
+    "notes_designer": "TraNsforM “VERSE”",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/10/10250mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "薄明のクオリア",
+    "bpm": 185,
+    "chain": 2074,
+    "composer": "polysha feat. 高城みよ",
+    "notes_designer": "inoshika-Morpho",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10249mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
