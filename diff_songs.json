@@ -727,6 +727,30 @@
       "diff": "MAS",
       "level": "14",
       "url": "https://sdvx.in/chunithm/10/10249mst.htm"
+    },
+        {
+      "name": "Linked Tune",
+      "diff": "MAS",
+      "level": "13+",
+      "url": "https://sdvx.in/chunithm/10/10264mst.htm"
+    },
+    {
+      "name": "Melodiniq",
+      "diff": "MAS",
+      "level": "15+",
+      "url": "https://sdvx.in/chunithm/10/10263mst.htm"
+    },
+    {
+      "name": "Melodiniq",
+      "diff": "ULT",
+      "level": "16",
+      "url": "https://sdvx.in/chunithm/ult/10263ult.htm"
+    },
+    {
+      "name": "YOUNITHM",
+      "diff": "ULT",
+      "level": "15+",
+      "url": "https://sdvx.in/chunithm/ult/10251ult.htm"
     }
   ]
 }

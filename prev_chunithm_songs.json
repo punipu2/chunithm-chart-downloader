@@ -22229,5 +22229,49 @@
     "url": "https://sdvx.in/chunithm/10/10249mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "Linked Tune",
+    "bpm": 136,
+    "chain": 1687,
+    "composer": "水野健治",
+    "notes_designer": "プレイヤーさん、ありがとう！またね！",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/10/10264mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Melodiniq",
+    "bpm": 193,
+    "chain": 4040,
+    "composer": "onoken a.k.a. owl＊tree",
+    "notes_designer": "Memoir of ”AdministratoR”",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/10/10263mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Melodiniq",
+    "bpm": 193,
+    "chain": 5716,
+    "composer": "onoken a.k.a. owl＊tree",
+    "notes_designer": "Memoir of ”AdministratoR”",
+    "level": "16",
+    "url": "https://sdvx.in/chunithm/ult/10263ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "YOUNITHM",
+    "bpm": 260,
+    "chain": 4321,
+    "composer": "大国奏音",
+    "notes_designer": "Reminiscence of ”UHUNITHM”",
+    "level": "15+",
+    "url": "https://sdvx.in/chunithm/ult/10251ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
   }
 ]
