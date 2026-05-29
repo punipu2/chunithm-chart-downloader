@@ -22394,5 +22394,60 @@
     "url": "https://sdvx.in/chunithm/end/07127end.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "All Over Again",
+    "bpm": 210,
+    "chain": 3106,
+    "composer": "Zekk",
+    "notes_designer": "そらいろカリン #FNTHWIN",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10271mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Amatsu",
+    "bpm": 150,
+    "chain": 2150,
+    "composer": "Juggernaut.",
+    "notes_designer": "ミニミライト",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10272mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "BANG!",
+    "bpm": 128,
+    "chain": 1181,
+    "composer": "Shoichiro Hirata feat.Sana",
+    "notes_designer": "Jack",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/10/10270mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Imprinting",
+    "bpm": 175,
+    "chain": 1525,
+    "composer": "Sakuzyo",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10274mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Reverie ft. xia",
+    "bpm": 172,
+    "chain": 2013,
+    "composer": "Gardens",
+    "notes_designer": "イノシカ提灯",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/10/10273mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
   }
 ]
