@@ -22449,5 +22449,82 @@
     "url": "https://sdvx.in/chunithm/10/10273mst.htm",
     "genre": "variety",
     "diff": "MAS"
+  },
+  {
+    "name": "sweet treasure",
+    "bpm": 172,
+    "chain": 1258,
+    "composer": "歌：綾地寧々（CV：桐谷華） 作詞：中山♡マミ（AngelNote） 作曲：篠原瑞希 編曲：篠原瑞希「サノバウィッチ」",
+    "notes_designer": "じゃこレモン",
+    "level": "12",
+    "url": "https://sdvx.in/chunithm/10/10276mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "こころに響く恋ほたる",
+    "bpm": 122,
+    "chain": 1025,
+    "composer": "橋本みゆき",
+    "notes_designer": "ミニミライト＠秋を知らせて",
+    "level": "11+",
+    "url": "https://sdvx.in/chunithm/10/10279mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "さくらんぼキッス～爆発だも～ん～",
+    "bpm": 140,
+    "chain": 1202,
+    "composer": "KOTOKO",
+    "notes_designer": "そらいろカリン",
+    "level": "12",
+    "url": "https://sdvx.in/chunithm/10/10277mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "空気力学少女と少年の詩",
+    "bpm": 182,
+    "chain": 1177,
+    "composer": "はな",
+    "notes_designer": "Twinrook -Live Happy!!-",
+    "level": "12+",
+    "url": "https://sdvx.in/chunithm/10/10278mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "恋せよ乙女！",
+    "bpm": 220,
+    "chain": 2170,
+    "composer": "歌：米倉千尋 作詞：Riryka（AngelNote） 作曲：Famishin（ゆずソフト） 編曲：井ノ原 智（AngelNote）「サノバウィッチ」",
+    "notes_designer": "ちゃろー☆ミニミライト",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/10/10275mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Re:Still",
+    "bpm": 128,
+    "chain": 2200,
+    "composer": "イロドリミドリ",
+    "notes_designer": "ロシェ＠ペンギン Re:Covered by じゃこレモン",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10280mst.htm",
+    "genre": "irodorimidori",
+    "diff": "MAS"
+  },
+  {
+    "name": "Philosopher",
+    "bpm": 145,
+    "chain": 2203,
+    "composer": "少女病",
+    "notes_designer": "アミノハバキリ",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/ult/02022ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
   }
 ]
