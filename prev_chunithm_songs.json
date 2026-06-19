@@ -22526,5 +22526,60 @@
     "url": "https://sdvx.in/chunithm/ult/02022ult.htm",
     "genre": "ultima",
     "diff": "ULT"
+  },
+  {
+    "name": "ARAIS",
+    "bpm": 180,
+    "chain": 2004,
+    "composer": "千本松 仁",
+    "notes_designer": "ミストルティン",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/10/10282mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "Pastel Sprinkles",
+    "bpm": 134,
+    "chain": 1964,
+    "composer": "pan",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10285mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "アイシング・ドリーム",
+    "bpm": 140,
+    "chain": 919,
+    "composer": "曲：卯乃／歌：珠洲島 有栖(CV：長縄 まりあ)、西館 ハク(CV：佐藤 実季)",
+    "notes_designer": "ミニミライト-Resistance-",
+    "level": "12+",
+    "url": "https://sdvx.in/chunithm/10/10283mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "いちげき！のテーマ",
+    "bpm": 175,
+    "chain": 2451,
+    "composer": "曲：ヒゲドライバー／歌：いちげきしゅーたーず！",
+    "notes_designer": "ミニミライト",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/10/10284mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
+  },
+  {
+    "name": "プリズム△▽リズム",
+    "bpm": 155,
+    "chain": 1556,
+    "composer": "Shoichiro Hirata feat.Sana",
+    "notes_designer": "ロシェ△▽ペンギン",
+    "level": "12+",
+    "url": "https://sdvx.in/chunithm/10/10281mst.htm",
+    "genre": "gekimai",
+    "diff": "MAS"
   }
 ]
