@@ -23021,5 +23021,49 @@
     "url": "https://sdvx.in/chunithm/11/11028mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "シャオシャオ蘭々♪",
+    "bpm": 170,
+    "chain": 2259,
+    "composer": "いずれ菖蒲か杜若",
+    "notes_designer": "みぞれヤナギ",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11029mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "偉大なる悪魔は実は大天使パトラちゃん様なのだ！",
+    "bpm": 195,
+    "chain": 2452,
+    "composer": "周防パトラ",
+    "notes_designer": "むにむにペンギン",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/11/11030mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "ウニ",
+    "bpm": 186,
+    "chain": 1432,
+    "composer": "Adeliae",
+    "notes_designer": "ミニミライト",
+    "level": "12+",
+    "url": "https://sdvx.in/chunithm/11/11031mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ウニの歌(Nanoru Naganai Remix)",
+    "bpm": 250,
+    "chain": 2316,
+    "composer": "作詞・作曲・編曲・ボーカル：周防パトラ　アレンジ：Nanoru Naganai",
+    "notes_designer": "Jako Remon",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/11/11032mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
