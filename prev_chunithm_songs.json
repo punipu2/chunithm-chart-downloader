@@ -23065,5 +23065,60 @@
     "url": "https://sdvx.in/chunithm/11/11032mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "ときめき★メテオストライク",
+    "bpm": 160,
+    "chain": 1732,
+    "composer": "水無瀬ミナミ (CV.田村ゆかり)「銀河特急 ミルキー☆サブウェイ」",
+    "notes_designer": "夕凪アロエ",
+    "level": "12+",
+    "url": "https://sdvx.in/chunithm/11/11033mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Ribbon",
+    "bpm": 128,
+    "chain": 1567,
+    "composer": "sabio/高村風太",
+    "notes_designer": "イノシカ提灯",
+    "level": "12",
+    "url": "https://sdvx.in/chunithm/11/11035mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "幕を下ろそう、パレードへ",
+    "bpm": 146,
+    "chain": 1546,
+    "composer": "海茶、多良レイト",
+    "notes_designer": "ミニミライト",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11034mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "ドーナツホール",
+    "bpm": 252,
+    "chain": 1772,
+    "composer": "ハチ",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/ult/03132ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
+  },
+  {
+    "name": "マトリョシカ",
+    "bpm": 205,
+    "chain": 2111,
+    "composer": "ハチ",
+    "notes_designer": "継ぎ接ぎ狂ったじゃこレモン",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/ult/03133ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
   }
 ]
