@@ -23120,5 +23120,49 @@
     "url": "https://sdvx.in/chunithm/ult/03133ult.htm",
     "genre": "ultima",
     "diff": "ULT"
+  },
+  {
+    "name": "Bunny Bunny Carrot Carrot",
+    "bpm": 170,
+    "chain": 1335,
+    "composer": "Mitsukiyo「ブルーアーカイブ -Blue Archive-」",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11037mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Glitch Street",
+    "bpm": 160,
+    "chain": 1619,
+    "composer": "KARUT「ブルーアーカイブ -Blue Archive-」",
+    "notes_designer": "アミノハバキリ＆ミストルティン＠生活健康部",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11036mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "E.V.E",
+    "bpm": 158,
+    "chain": 1333,
+    "composer": "SOMON",
+    "notes_designer": "Hard-Attacker",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/11/11039mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "On And On!!",
+    "bpm": 170,
+    "chain": 1496,
+    "composer": "ETIA. feat. Jenga",
+    "notes_designer": "みぞれヤナギ",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11038mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
   }
 ]
