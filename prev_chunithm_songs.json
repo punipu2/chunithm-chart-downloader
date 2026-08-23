@@ -23164,5 +23164,49 @@
     "url": "https://sdvx.in/chunithm/11/11038mst.htm",
     "genre": "variety",
     "diff": "MAS"
+  },
+  {
+    "name": "Fox Hunt",
+    "bpm": 190,
+    "chain": 2025,
+    "composer": "よしぶる feat.街風めい",
+    "notes_designer": "イノシカ提灯",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11041mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "コトバノ廃都",
+    "bpm": 200,
+    "chain": 2222,
+    "composer": "ぽりふぉ(PolyphonicBranch) feat. 松下",
+    "notes_designer": "ミニミライト",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11043mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "ふわパチ星雲PTL-3",
+    "bpm": 160,
+    "chain": 1613,
+    "composer": "海茶、多良レイト feat. 桃寝ちのい",
+    "notes_designer": "Meteian",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11040mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "命スクリプト",
+    "bpm": 140,
+    "chain": 1362,
+    "composer": "原口沙輔 feat.ななひら",
+    "notes_designer": "透明絵具",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/11/11042mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
