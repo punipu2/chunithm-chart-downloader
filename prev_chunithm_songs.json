@@ -23208,5 +23208,60 @@
     "url": "https://sdvx.in/chunithm/11/11042mst.htm",
     "genre": "original",
     "diff": "MAS"
+  },
+  {
+    "name": "Drift",
+    "bpm": 207,
+    "chain": 1896,
+    "composer": "NAOKI「GUILTY GEAR -STRIVE-」",
+    "notes_designer": "イノシカ提灯",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11046mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Find Your One Way",
+    "bpm": 128,
+    "chain": 1642,
+    "composer": "NAOKI「GUILTY GEAR -STRIVE-」",
+    "notes_designer": "ロシェ＠ペンギン",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11045mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "JACKY[Remix]",
+    "bpm": 135,
+    "chain": 1095,
+    "composer": "バーチャファイター",
+    "notes_designer": "JACKY LEMON",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11048mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "Smell of the Game",
+    "bpm": 208,
+    "chain": 1700,
+    "composer": "NAOKI「GUILTY GEAR -STRIVE-」",
+    "notes_designer": "Jack",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11044mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "The Disaster of Passion",
+    "bpm": 180,
+    "chain": 1255,
+    "composer": "AISHA「GUILTY GEAR -STRIVE-」",
+    "notes_designer": "ミニミライト＠突撃！突撃ぃ～！",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11047mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
   }
 ]
