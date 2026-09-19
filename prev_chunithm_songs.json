@@ -23263,5 +23263,60 @@
     "url": "https://sdvx.in/chunithm/11/11047mst.htm",
     "genre": "variety",
     "diff": "MAS"
+  },
+  {
+    "name": "Colossus",
+    "bpm": null,
+    "chain": null,
+    "composer": "加藤 浩義（ノイジークローク）",
+    "notes_designer": "",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11049mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "[IMPERIALDISORDER]",
+    "bpm": null,
+    "chain": null,
+    "composer": "Blacklolita",
+    "notes_designer": "",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/11/11053mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Knockout Ravebox",
+    "bpm": null,
+    "chain": null,
+    "composer": "Hommarju",
+    "notes_designer": "",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11051mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "Prismatic Theory",
+    "bpm": null,
+    "chain": null,
+    "composer": "荒谷サトル",
+    "notes_designer": "",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11050mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "アンサレステラー",
+    "bpm": null,
+    "chain": null,
+    "composer": "花徒めと",
+    "notes_designer": "",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11052mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
