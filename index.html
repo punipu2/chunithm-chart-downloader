@@ -49,7 +49,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.5.0</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.5.1</span></h1>
 
     <div class="section">
       <div class="note">
@@ -227,7 +227,7 @@
           <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
           <span class="level-label">${song.level || '?'}</span>
           <span class="song-title">${displayName}</span>
-          <button type="button" class="direct-link-btn" title="譜面URLを直接開く" aria-label="譜面URLを直接開く">↗</button>
+          <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
         `;
 
         li.onclick = () => {
@@ -239,7 +239,7 @@
         li.querySelector('.direct-link-btn').onclick = (event) => {
           event.stopPropagation();
           setSongFields(song);
-          window.open(song.url, '_blank');
+          fetchAndSaveChart();
         };
 
         suggestions.appendChild(li);
@@ -392,7 +392,7 @@
           <span class="diff-label" style="background:${getColor(item.diff)}">${item.diff}</span>
           <span class="level-label">${item.level || '?'}</span>
           <span class="song-title">${item.name}</span>
-          <button type="button" class="direct-link-btn" title="譜面URLを直接開く" aria-label="譜面URLを直接開く">↗</button>
+          <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
         `;
         li.onclick = () => {
           setSongFields(item);
@@ -400,7 +400,7 @@
         li.querySelector('.direct-link-btn').onclick = (event) => {
           event.stopPropagation();
           setSongFields(item);
-          window.open(item.url, '_blank');
+          fetchAndSaveChart();
         };
         ul.appendChild(li);
       });
