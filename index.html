@@ -33,6 +33,9 @@
     .diff-label { min-width: 2.2em; margin-right: 0.5em; font-weight: bold; color: white; padding: 0.2em 0.5em; border-radius: 4px; text-align: center; }
     .level-label { min-width: 1.8em; margin-right: 0.5em; font-weight: bold; text-align: left; color: #333; }
     .song-title { flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .direct-link-btn { flex: 0 0 30px; width: 30px; height: 30px; margin: 0 0 0 0.5em; padding: 0; border: 1px solid #ccc; border-radius: 4px; background-color: #757575; color: white; cursor: pointer; font-size: 0.95em; line-height: 1; display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 1px 1px rgba(0,0,0,0.04); }
+    .direct-link-btn:hover { background-color: #555555; }
+    .direct-link-btn:active { background-color: #666666; }
     @media screen and (max-width: 500px) {
       .inline-label { font-size: 0.8em; }
       input[type="text"], input[type="checkbox"] { font-size: 0.8em; }
@@ -46,7 +49,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.4.7</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.5.0</span></h1>
 
     <div class="section">
       <div class="note">
@@ -224,15 +227,19 @@
           <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
           <span class="level-label">${song.level || '?'}</span>
           <span class="song-title">${displayName}</span>
+          <button type="button" class="direct-link-btn" title="譜面URLを直接開く" aria-label="譜面URLを直接開く">↗</button>
         `;
 
         li.onclick = () => {
-          document.getElementById('url').value = song.url;
-          document.getElementById('search').value = song.name;
+          setSongFields(song);
           suggestions.innerHTML = '';
           suggestions.style.display = 'none';
-          highlightField('search');
-          highlightField('url');
+        };
+
+        li.querySelector('.direct-link-btn').onclick = (event) => {
+          event.stopPropagation();
+          setSongFields(song);
+          window.open(song.url, '_blank');
         };
 
         suggestions.appendChild(li);
@@ -337,6 +344,13 @@
       }
     }
 
+    function setSongFields(song) {
+      document.getElementById('search').value = song.name;
+      document.getElementById('url').value = song.url;
+      highlightField('search');
+      highlightField('url');
+    }
+
     function createUpdateContent(title, items, useDetails = false) {
       if (useDetails) {
         // 過去分
@@ -378,12 +392,15 @@
           <span class="diff-label" style="background:${getColor(item.diff)}">${item.diff}</span>
           <span class="level-label">${item.level || '?'}</span>
           <span class="song-title">${item.name}</span>
+          <button type="button" class="direct-link-btn" title="譜面URLを直接開く" aria-label="譜面URLを直接開く">↗</button>
         `;
         li.onclick = () => {
-          search.value = item.name;
-          url.value = item.url;
-          highlightField('search');
-          highlightField('url');
+          setSongFields(item);
+        };
+        li.querySelector('.direct-link-btn').onclick = (event) => {
+          event.stopPropagation();
+          setSongFields(item);
+          window.open(item.url, '_blank');
         };
         ul.appendChild(li);
       });
