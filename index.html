@@ -49,7 +49,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.5.1</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.6.0</span></h1>
 
     <div class="section">
       <div class="note">
@@ -123,6 +123,158 @@
       }
     }
 
+    // 検索用の正規化:
+    // ・英字のアクセント等を除去
+    // ・一部の「文字の代わりに使われている記号」を英字へ変換
+    // ・ギリシャ文字はローマ字相当へ変換
+    const SEARCH_SYMBOL_MAP = {
+      '✪': 'O',
+      '∅': 'O',
+      '@': 'A',
+      '＠': 'A',
+      'Я': 'R',
+      'я': 'r',
+      'Ø': 'O',
+      'ø': 'o',
+      'Ł': 'L',
+      'ł': 'l',
+      'Đ': 'D',
+      'đ': 'd',
+      'Ð': 'D',
+      'ð': 'd',
+      'Þ': 'TH',
+      'þ': 'th',
+      'Æ': 'AE',
+      'æ': 'ae',
+      'Œ': 'OE',
+      'œ': 'oe',
+      'ß': 'ss',
+      'ı': 'i'
+    };
+
+    const GREEK_MAP = {
+      'Α':'A','Β':'B','Γ':'G','Δ':'D','Ε':'E','Ζ':'Z','Η':'I','Θ':'TH',
+      'Ι':'I','Κ':'K','Λ':'A','Μ':'M','Ν':'N','Ξ':'X','Ο':'O','Π':'P',
+      'Ρ':'R','Σ':'S','Τ':'T','Υ':'Y','Φ':'F','Χ':'CH','Ψ':'PS','Ω':'O',
+      'Ά':'A','Έ':'E','Ή':'I','Ί':'I','Ό':'O','Ύ':'Y','Ώ':'O',
+      'α':'a','β':'b','γ':'g','δ':'d','ε':'e','ζ':'z','η':'i','θ':'th',
+      'ι':'i','κ':'k','λ':'a','μ':'m','ν':'n','ξ':'x','ο':'o','π':'p',
+      'ρ':'r','σ':'s','ς':'s','τ':'t','υ':'y','φ':'f','χ':'ch','ψ':'ps','ω':'o',
+      'ά':'a','έ':'e','ή':'i','ί':'i','ό':'o','ύ':'y','ώ':'o'
+    };
+
+    // 特別措置
+    const SEARCH_ALIASES = {
+      'Ωκεανος': ['Okeanos', 'オーケアノス'],
+      'χρόνος': ['Chronos', 'クロノス']
+    };
+
+    function isJapaneseBaseChar(ch) {
+      if (!ch) return false;
+      const cp = ch.codePointAt(0);
+      return (
+        (cp >= 0x3040 && cp <= 0x309F) || // ひらがな
+        (cp >= 0x30A0 && cp <= 0x30FF)    // カタカナ
+      );
+    }
+
+    function normalizeSearchWithMap(text) {
+      const chars = [];
+      const map = [];
+
+      for (let i = 0; i < text.length; ) {
+        const codePoint = text.codePointAt(i);
+        const originalChar = String.fromCodePoint(codePoint);
+        const originalIndex = i;
+        i += originalChar.length;
+
+        let mapped = SEARCH_SYMBOL_MAP[originalChar]
+          ?? GREEK_MAP[originalChar]
+          ?? originalChar;
+
+        mapped = mapped.normalize('NFKC');
+
+        for (const decomposedChar of mapped.normalize('NFD')) {
+          if (/^\p{M}$/u.test(decomposedChar)) {
+            // 日本語の濁点・半濁点は維持
+            const previous = chars.length ? chars[chars.length - 1] : '';
+            if (isJapaneseBaseChar(previous)) {
+              chars.push(decomposedChar);
+              map.push(originalIndex);
+            }
+            continue;
+          }
+
+          // Unicodeの「文字」または「数字」は残し、それ以外は検索上無視
+          if (/^[\p{L}\p{N}]$/u.test(decomposedChar)) {
+            chars.push(decomposedChar.toLowerCase());
+            map.push(originalIndex);
+          }
+        }
+      }
+
+      return { chars, map };
+    }
+
+    function normalizeSearchText(text) {
+      return normalizeSearchWithMap(text).chars.join('');
+    }
+
+    function getSearchKeys(song) {
+      return [
+        normalizeSearchText(song.name),
+        ...(SEARCH_ALIASES[song.name] || []).map(normalizeSearchText)
+      ];
+    }
+
+    function findPrimaryMatch(song, normalizedInput) {
+      const info = normalizeSearchWithMap(song.name);
+      const inputChars = Array.from(normalizedInput);
+
+      if (inputChars.length === 0) return -1;
+
+      outer:
+      for (let i = 0; i <= info.chars.length - inputChars.length; i++) {
+        for (let j = 0; j < inputChars.length; j++) {
+          if (info.chars[i + j] !== inputChars[j]) continue outer;
+        }
+        return i;
+      }
+      return -1;
+    }
+
+    function highlightNormalizedMatch(originalName, normalizedInput) {
+      const info = normalizeSearchWithMap(originalName);
+      const inputChars = Array.from(normalizedInput);
+
+      if (inputChars.length === 0) return originalName;
+
+      let matchIndex = -1;
+      outer:
+      for (let i = 0; i <= info.chars.length - inputChars.length; i++) {
+        for (let j = 0; j < inputChars.length; j++) {
+          if (info.chars[i + j] !== inputChars[j]) continue outer;
+        }
+        matchIndex = i;
+        break;
+      }
+
+      if (matchIndex === -1) return originalName;
+
+      const matchStart = info.map[matchIndex];
+      const matchEnd = info.map[matchIndex + inputChars.length - 1];
+
+      if (matchStart == null || matchEnd == null) return originalName;
+
+      return (
+        originalName.slice(0, matchStart) +
+        '<strong>' +
+        originalName.slice(matchStart, matchEnd + 1) +
+        '</strong>' +
+        originalName.slice(matchEnd + 1)
+      );
+    }
+
     function loadPrefs() {
       ['MAS','ULT','WE'].forEach(diff => {
         const cb = document.getElementById('filter'+diff);
@@ -138,7 +290,8 @@
     document.getElementById('search').addEventListener('input', function () {
       const searchField = document.getElementById('search');
       const urlField = document.getElementById('url');
-      const input = searchField.value.replace(/\s/g, '').toLowerCase();
+      const rawInput = searchField.value;
+      const input = normalizeSearchText(rawInput);
       const suggestions = document.getElementById('suggestions');
 
       // フィルター状態取得
@@ -149,7 +302,7 @@
       // 候補クリア
       suggestions.innerHTML = '';
 
-      if (input === "") {
+      if (rawInput.trim() === '' || input === '') {
         // 両方の色をクリア
         searchField.style.backgroundColor = '';
         urlField.style.backgroundColor = '';
@@ -160,10 +313,12 @@
         suggestions.style.display = 'none';
         return;
       }
+
       const results = songList
         .filter(song => {
-          const nameNorm = song.name.replace(/\s/g, '').toLowerCase();
-          if (!nameNorm.includes(input)) return false;
+          const searchKeys = getSearchKeys(song);
+          if (!searchKeys.some(key => key.includes(input))) return false;
+
           // チェック状態による絞り込み
           if (song.diff === 'MAS' && !masEnabled) return false;
           if (song.diff === 'ULT' && !ultEnabled) return false;
@@ -171,9 +326,13 @@
           return true;
         })
         .sort((a, b) => {
-          const aName = a.name.replace(/\s/g, '').toLowerCase();
-          const bName = b.name.replace(/\s/g, '').toLowerCase();
-          return (aName.startsWith(input) ? -1 : 1) - (bName.startsWith(input) ? -1 : 1);
+          const aKeys = getSearchKeys(a);
+          const bKeys = getSearchKeys(b);
+
+          const aStarts = aKeys.some(key => key.startsWith(input));
+          const bStarts = bKeys.some(key => key.startsWith(input));
+
+          return (aStarts ? -1 : 1) - (bStarts ? -1 : 1);
         });
 
       if (results.length === 0) {
@@ -184,38 +343,7 @@
       results.slice(0, 99).forEach(song => {
         const li = document.createElement('li');
 
-        const originalName = song.name;
-        const normalized = originalName.replace(/\s/g, '').toLowerCase();
-        const matchIndex = normalized.indexOf(input);
-
-        let displayName = originalName;
-
-        if (matchIndex !== -1) {
-          // 元の曲名の中で一致部分を太字にする
-          let flatIndex = 0;
-          let matchStart = -1;
-          let matchEnd = -1;
-
-          // 空白を無視したインデックスから、元の文字列中の範囲を特定
-          for (let i = 0; i < originalName.length; i++) {
-            if (originalName[i] === ' ') continue;
-            if (flatIndex === matchIndex) matchStart = i;
-            if (flatIndex === matchIndex + input.length - 1) {
-              matchEnd = i;
-              break;
-            }
-            flatIndex++;
-          }
-
-          if (matchStart !== -1 && matchEnd !== -1) {
-            displayName =
-              originalName.slice(0, matchStart) +
-              '<strong>' +
-              originalName.slice(matchStart, matchEnd + 1) +
-              '</strong>' +
-              originalName.slice(matchEnd + 1);
-          }
-        }
+        const displayName = highlightNormalizedMatch(song.name, input);
 
         const diffColor = {
           MAS: "#a0a",
