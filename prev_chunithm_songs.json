@@ -23351,5 +23351,49 @@
     "url": "https://sdvx.in/chunithm/end/09114end.htm",
     "genre": "end",
     "diff": "WE"
+  },
+  {
+    "name": "LaVI-Bavellabion",
+    "bpm": 142,
+    "chain": 1813,
+    "composer": "三木谷奈々 SLAVE.V-V-R",
+    "notes_designer": "bloody-morpho",
+    "level": "13+",
+    "url": "https://sdvx.in/chunithm/11/11055mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "Your Reality(Kenji Mizuno Remix)",
+    "bpm": 111,
+    "chain": 1922,
+    "composer": "Dan Salvato／水野健治",
+    "notes_designer": "aloe.chr",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11054mst.htm",
+    "genre": "pops",
+    "diff": "MAS"
+  },
+  {
+    "name": "奇々解体",
+    "bpm": 148,
+    "chain": 1520,
+    "composer": "MURASAKI/かたたかんな",
+    "notes_designer": "ロシェ＠調査員",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11056mst.htm",
+    "genre": "variety",
+    "diff": "MAS"
+  },
+  {
+    "name": "きゅうくらりん",
+    "bpm": 220,
+    "chain": 2511,
+    "composer": "いよわ",
+    "notes_designer": "ミニミライト@Now everyone can be happy.",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/ult/08067ult.htm",
+    "genre": "ultima",
+    "diff": "ULT"
   }
 ]
