@@ -23395,5 +23395,60 @@
     "url": "https://sdvx.in/chunithm/ult/08067ult.htm",
     "genre": "ultima",
     "diff": "ULT"
+  },
+  {
+    "name": "SAN値直葬",
+    "bpm": 168,
+    "chain": 2281,
+    "composer": "STEAKA",
+    "notes_designer": "みぞれヤナギ",
+    "level": "15",
+    "url": "https://sdvx.in/chunithm/11/11059mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "雑魚",
+    "bpm": 135,
+    "chain": 1535,
+    "composer": "柊マグネタイト",
+    "notes_designer": "ざぁこレモン",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11057mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "風呂入るプロファイル",
+    "bpm": 190,
+    "chain": 1777,
+    "composer": "もちうつね",
+    "notes_designer": "◆ミニミライト(；＞ω＜)",
+    "level": "13",
+    "url": "https://sdvx.in/chunithm/11/11058mst.htm",
+    "genre": "niconico",
+    "diff": "MAS"
+  },
+  {
+    "name": "コンクエスト・チャレンジ",
+    "bpm": 210,
+    "chain": 2630,
+    "composer": "サツキ feat.ろん",
+    "notes_designer": "ミニミライト",
+    "level": "14+",
+    "url": "https://sdvx.in/chunithm/11/11061mst.htm",
+    "genre": "original",
+    "diff": "MAS"
+  },
+  {
+    "name": "ハイボルテージガール",
+    "bpm": 164,
+    "chain": 1668,
+    "composer": "マサラダ feat.あられ",
+    "notes_designer": "イノシカ提灯",
+    "level": "14",
+    "url": "https://sdvx.in/chunithm/11/11060mst.htm",
+    "genre": "original",
+    "diff": "MAS"
   }
 ]
