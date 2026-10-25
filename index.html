@@ -36,6 +36,10 @@
     .direct-link-btn { flex: 0 0 30px; width: 30px; height: 30px; margin: 0 0 0 0.5em; padding: 0; border: 1px solid #ccc; border-radius: 4px; background-color: #757575; color: white; cursor: pointer; font-size: 0.95em; line-height: 1; display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 1px 1px rgba(0,0,0,0.04); }
     .direct-link-btn:hover { background-color: #555555; }
     .direct-link-btn:active { background-color: #666666; }
+    .youtube-btn { flex: 0 0 30px; width: 30px; height: 30px; margin: 0 0 0 0.35em; padding: 0; border: 1px solid #aaa; border-radius: 4px; background-color: #777; color: white; cursor: pointer; font-size: 0.9em; line-height: 1; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+    .youtube-btn.has-youtube { background-color: #e62117; border-color: #c91c13; }
+    .youtube-btn.has-youtube:hover { background-color: #c91c13; }
+    .youtube-btn:disabled { cursor: not-allowed; opacity: 0.45; }
     @media screen and (max-width: 500px) {
       .inline-label { font-size: 0.8em; }
       input[type="text"], input[type="checkbox"] { font-size: 0.8em; }
@@ -49,12 +53,12 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v1.6.3</span></h1>
+    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v2.0.0</span></h1>
 
     <div class="section">
       <div class="note">
         譜面画像は
-        <a href="https://sdvx.in/chunithm.html" target="_blank">CHUNITHM譜面保管所</a>
+        <a href="https://sdvx.in/chunithm.php" target="_blank">CHUNITHM譜面保管所</a>
         から取得しています。
       </div>
     </div>
@@ -78,7 +82,7 @@
     <div class="section">
       <label>譜面URLを直接入力する場合:</label>
       <div class="input-row">
-        <input type="text" id="url" placeholder="https://sdvx.in/chunithm/10/10098mst.htm">
+        <input type="text" id="url" placeholder="https://sdvx.in/chunithm/_/viewer.php?id=11066&amp;diff=mst">
         <button type="button" class="copy-btn" onclick="copyText('url', this)">📋</button>
       </div>
     </div>
@@ -102,7 +106,7 @@
     </div>
 
     <div class="note">
-      ・2026/10/09時点で登録されている譜面に対応しました。<br>
+      ・2026/10/25時点で登録されている譜面に対応しました。<br>
       ・スペース有無を無視した検索に対応しています。<br>
       ・一部保存できない譜面があります。ご了承ください。
     </div>
@@ -112,11 +116,26 @@
 
   <script>
     const songList = [];
+
+    // 静的JSONが差し替えられた後も古いHTTPキャッシュを使わない。
+    async function fetchFreshJson(path) {
+      const separator = path.includes('?') ? '&' : '?';
+      const response = await fetch(`${path}${separator}_=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
+      return response.json();
+    }
+
     async function loadSongList() {
       try {
-        const res = await fetch('./prev_chunithm_songs.json');
-        const data = await res.json();
+        const data = await fetchFreshJson('./prev_chunithm_songs.json');
+        if (!Array.isArray(data)) throw new Error('譜面データが配列ではありません');
+        // 検索キーとハイライト情報をロード時に一度だけ計算し、入力中の重い正規化を避ける。
+        for (const song of data) {
+          song._searchKeys = buildSearchKeys(song);
+          song._nameSearchInfo = normalizeSearchWithMap(String(song.name || ''));
+        }
         songList.push(...data);
+        document.getElementById('search').dispatchEvent(new Event('input'));
       } catch (err) {
         alert("譜面データの読み込みに失敗しました。JSONファイルを確認してください。");
         console.error(err);
@@ -220,11 +239,143 @@
       return normalizeSearchWithMap(text).chars.join('');
     }
 
-    function getSearchKeys(song) {
-      return [
-        normalizeSearchText(song.name),
-        ...(SEARCH_ALIASES[song.name] || []).map(normalizeSearchText)
+    function buildSearchKeys(song) {
+      // 曲名そのものと、読み仮名・英字表記などの検索補助キーを分けてキャッシュする。
+      // artist_search_hira / artist_search_abc / composer は意図的に検索対象外。
+      song._directSearchName = normalizeSearchText(String(song.name || ''));
+      const alternateValues = [
+        song.title_search_hira,
+        song.title_search_abc,
+        ...(SEARCH_ALIASES[song.name] || [])
       ];
+      song._alternateSearchKeys = [...new Set(
+        alternateValues
+          .filter(value => typeof value === 'string' && value.trim())
+          .map(normalizeSearchText)
+          .filter(Boolean)
+      )];
+      return [...new Set([song._directSearchName, ...song._alternateSearchKeys].filter(Boolean))];
+    }
+
+    function getSearchKeys(song) {
+      // 読み込み時に作ったキャッシュを返す。入力のたびに2400曲分の正規化をしない。
+      return Array.isArray(song?._searchKeys) ? song._searchKeys : buildSearchKeys(song);
+    }
+
+    function getSongSearchRank(song, input, inputLength) {
+      // 優先順位: 曲名完全一致 > 曲名先頭一致 > 曲名途中一致 > 別表記先頭一致 > 別表記途中一致。
+      // 1文字検索は先頭一致だけに限定し、部分一致の大量ヒットを防ぐ。
+      const direct = typeof song._directSearchName === 'string'
+        ? song._directSearchName
+        : normalizeSearchText(String(song.name || ''));
+      const alternate = Array.isArray(song._alternateSearchKeys)
+        ? song._alternateSearchKeys
+        : getSearchKeys(song).filter(key => key !== direct);
+
+      if (direct === input) return 0;
+      if (direct.startsWith(input)) return 1;
+      if (inputLength > 1 && direct.includes(input)) return 2;
+      if (alternate.some(key => key.startsWith(input))) return 3;
+      if (inputLength > 1 && alternate.some(key => key.includes(input))) return 4;
+      return -1;
+    }
+
+    function normalizeChartId(id) {
+      const value = String(id ?? '').trim();
+      return /^\d+$/.test(value) ? (value.replace(/^0+/, '') || '0') : value;
+    }
+
+    function normalizeChartCode(code) {
+      const value = String(code ?? '').trim().toLowerCase();
+      if (value === 'mst' || value === 'mas' || value === 'master') return 'mst';
+      if (value === 'ult') return 'ult';
+      if (value === 'we' || value.startsWith('end')) return 'we';
+      return '';
+    }
+
+    function chartIdentity(item) {
+      let id = String(item?.id ?? '').trim();
+      let code = normalizeChartCode(item?.chart_code) || normalizeChartCode(item?.diff);
+      const rawUrl = String(item?.url ?? '').trim();
+
+      if (rawUrl) {
+        try {
+          const parsed = new URL(rawUrl, window.location.href);
+          if (parsed.pathname.replace(/\/$/, '').endsWith('/viewer.php')) {
+            id = (parsed.searchParams.get('id') || id).trim();
+            code = normalizeChartCode(parsed.searchParams.get('diff')) || code;
+          } else {
+            const match = parsed.pathname.match(/\/(\d+)(mst|ult|end\d?)\.htm$/i);
+            if (match) {
+              id = match[1];
+              code = normalizeChartCode(match[2]) || code;
+            }
+          }
+        } catch (_) {
+          const match = rawUrl.match(/(\d+)(mst|ult|end\d?)\.htm(?:$|[?#])/i);
+          if (match) {
+            id = match[1];
+            code = normalizeChartCode(match[2]) || code;
+          }
+        }
+      }
+
+      const canonicalId = normalizeChartId(id);
+      return canonicalId && code ? `${canonicalId}:${code}` : '';
+    }
+
+    function resolveSongForItem(item) {
+      const key = chartIdentity(item);
+      if (key) {
+        const matching = songList.find(song => chartIdentity(song) === key);
+        if (matching) return matching;
+      }
+      if (item?.url) return songList.find(song => song.url === item.url) || null;
+      return null;
+    }
+
+    function resolveYoutubeId(item) {
+      // 複数リンクがある場合は2本目（速度9.0想定）を優先する。
+      const ids = Array.isArray(item?.youtube_ids)
+        ? item.youtube_ids.map(value => String(value ?? '').trim()).filter(value => /^[A-Za-z0-9_-]{11}$/.test(value))
+        : [];
+      if (ids.length >= 2) return ids[1];
+      if (ids.length === 1) return ids[0];
+      const primary = String(item?.youtube_id ?? '').trim();
+      if (/^[A-Za-z0-9_-]{11}$/.test(primary)) return primary;
+
+      const matched = resolveSongForItem(item);
+      if (matched && matched !== item) {
+        const matchedIds = Array.isArray(matched.youtube_ids)
+          ? matched.youtube_ids.map(value => String(value ?? '').trim()).filter(value => /^[A-Za-z0-9_-]{11}$/.test(value))
+          : [];
+        if (matchedIds.length >= 2) return matchedIds[1];
+        if (matchedIds.length === 1) return matchedIds[0];
+        const id = String(matched.youtube_id ?? '').trim();
+        if (/^[A-Za-z0-9_-]{11}$/.test(id)) return id;
+      }
+      return '';
+    }
+
+    function setupYoutubeButton(button, item) {
+      const youtubeId = resolveYoutubeId(item);
+      if (youtubeId) {
+        button.disabled = false;
+        button.classList.add('has-youtube');
+        button.title = 'YouTubeで動画を見る';
+        button.setAttribute('aria-label', 'YouTubeで動画を見る');
+      } else {
+        button.disabled = true;
+        button.classList.remove('has-youtube');
+        button.title = 'YouTube動画リンクなし';
+        button.setAttribute('aria-label', 'YouTube動画リンクなし');
+      }
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        const id = resolveYoutubeId(item);
+        if (!id) return;
+        window.open(`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`, '_blank', 'noopener,noreferrer');
+      });
     }
 
     function findPrimaryMatch(song, normalizedInput) {
@@ -243,8 +394,8 @@
       return -1;
     }
 
-    function highlightNormalizedMatch(originalName, normalizedInput) {
-      const info = normalizeSearchWithMap(originalName);
+    function highlightNormalizedMatch(originalName, normalizedInput, cachedInfo = null) {
+      const info = cachedInfo || normalizeSearchWithMap(originalName);
       const inputChars = Array.from(normalizedInput);
 
       if (inputChars.length === 0) return originalName;
@@ -287,64 +438,78 @@
       });
     }
 
+    let searchDebounceTimer = null;
     document.getElementById('search').addEventListener('input', function () {
       const searchField = document.getElementById('search');
       const urlField = document.getElementById('url');
       const rawInput = searchField.value;
+      const suggestions = document.getElementById('suggestions');
+
+      // 入力欄の描画を先にブラウザへ返し、候補検索は次の短いタイマーで処理する。
+      if (searchDebounceTimer !== null) clearTimeout(searchDebounceTimer);
+      if (rawInput.trim() === '') {
+        suggestions.innerHTML = '';
+        suggestions.style.display = 'none';
+        searchField.style.backgroundColor = '';
+        urlField.style.backgroundColor = '';
+        urlField.value = '';
+        return;
+      }
+      searchDebounceTimer = setTimeout(() => runSongSearch(rawInput), 20);
+    });
+
+    function runSongSearch(rawInput) {
+      // 古い検索結果が遅れて出ないよう、現在の入力値と一致する場合だけ描画する。
+      const searchField = document.getElementById('search');
+      if (searchField.value !== rawInput) return;
+      const urlField = document.getElementById('url');
       const input = normalizeSearchText(rawInput);
       const suggestions = document.getElementById('suggestions');
 
-      // フィルター状態取得
-      const masEnabled = document.getElementById('filterMAS').checked;
-      const ultEnabled = document.getElementById('filterULT').checked;
-      const weEnabled  = document.getElementById('filterWE').checked;
-
-      // 候補クリア
-      suggestions.innerHTML = '';
-
-      if (rawInput.trim() === '' || input === '') {
-        // 両方の色をクリア
+      if (input === '') {
+        suggestions.innerHTML = '';
+        suggestions.style.display = 'none';
         searchField.style.backgroundColor = '';
         urlField.style.backgroundColor = '';
-
-        // URL欄の内容もクリア
         urlField.value = '';
-
-        suggestions.style.display = 'none';
         return;
       }
 
-      const results = songList
-        .filter(song => {
-          const searchKeys = getSearchKeys(song);
-          if (!searchKeys.some(key => key.includes(input))) return false;
+      const masEnabled = document.getElementById('filterMAS').checked;
+      const ultEnabled = document.getElementById('filterULT').checked;
+      const weEnabled = document.getElementById('filterWE').checked;
+      const inputLength = Array.from(input).length;
+      const limit = 99;
+      const rankedResults = [[], [], [], [], []];
 
-          // チェック状態による絞り込み
-          if (song.diff === 'MAS' && !masEnabled) return false;
-          if (song.diff === 'ULT' && !ultEnabled) return false;
-          if (song.diff === 'WE'  && !weEnabled) return false;
-          return true;
-        })
-        .sort((a, b) => {
-          const aKeys = getSearchKeys(a);
-          const bKeys = getSearchKeys(b);
+      // 1回走査し、直接の曲名一致を読み仮名・英字表記の一致より前に表示する。
+      for (const song of songList) {
+        if ((song.diff === 'MAS' && !masEnabled) ||
+            (song.diff === 'ULT' && !ultEnabled) ||
+            (song.diff === 'WE' && !weEnabled)) continue;
 
-          const aStarts = aKeys.some(key => key.startsWith(input));
-          const bStarts = bKeys.some(key => key.startsWith(input));
+        const rank = getSongSearchRank(song, input, inputLength);
+        if (rank >= 0 && rankedResults[rank].length < limit) {
+          rankedResults[rank].push(song);
+        }
+      }
 
-          return (aStarts ? -1 : 1) - (bStarts ? -1 : 1);
-        });
-
+      const results = [];
+      for (const group of rankedResults) {
+        const remaining = limit - results.length;
+        if (remaining <= 0) break;
+        results.push(...group.slice(0, remaining));
+      }
+      suggestions.innerHTML = '';
       if (results.length === 0) {
         suggestions.style.display = 'none';
         return;
       }
 
-      results.slice(0, 99).forEach(song => {
+      const fragment = document.createDocumentFragment();
+      for (const song of results) {
         const li = document.createElement('li');
-
-        const displayName = highlightNormalizedMatch(song.name, input);
-
+        const displayName = highlightNormalizedMatch(song.name, input, song._nameSearchInfo);
         const diffColor = {
           MAS: "#a0a",
           ULT: "#862333",
@@ -355,26 +520,25 @@
           <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
           <span class="level-label">${song.level || '?'}</span>
           <span class="song-title">${displayName}</span>
+          <button type="button" class="youtube-btn" title="YouTube動画リンクなし" aria-label="YouTube動画リンクなし" disabled>▶</button>
           <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
         `;
-
+        setupYoutubeButton(li.querySelector('.youtube-btn'), song);
         li.onclick = () => {
           setSongFields(song);
           suggestions.innerHTML = '';
           suggestions.style.display = 'none';
         };
-
         li.querySelector('.direct-link-btn').onclick = (event) => {
           event.stopPropagation();
           setSongFields(song);
           fetchAndSaveChart();
         };
-
-        suggestions.appendChild(li);
-      });
-
+        fragment.appendChild(li);
+      }
+      suggestions.appendChild(fragment);
       suggestions.style.display = 'block';
-    });
+    }
 
     document.getElementById('url').addEventListener('input', function () {
       clearHighlightIfEmpty('url');
@@ -390,64 +554,167 @@
       const url = document.getElementById('url').value.trim();
       if (!url.startsWith('http')) return alert('正しい譜面URLを入力してください');
 
-      const match = url.match(/\/(\d{5})([a-zA-Z0-9]+)\.htm$/);
-      if (!match) return alert('譜面URLの形式が正しくありません。');
+      const parsed = parseChartUrlForImage(url);
+      if (!parsed || !parsed.id || !parsed.code) {
+        return alert('譜面URLの形式が正しくありません。viewer.php?id=曲ID&diff=mst/ult/we の形式を確認してください。');
+      }
 
-      const song_id = match[1];
-      const diffcode = match[2];
-      const imagePath = `resized_charts/${song_id}${diffcode}.png`;
+      // URLのクエリ順序が違う場合や旧.htm URLでも、ID＋譜面種別で検索する。
+      const song = resolveSongForItem({ url });
+      const songId = String(song?.id || parsed.id);
+      const diffCode = String(song?.chart_code || parsed.imageCode || parsed.code);
+      const imagePath = `resized_charts/${songId}${diffCode}.png`;
+      const title = song ? song.name : `${songId}${diffCode}`;
 
-      // 曲名を検索
-      const song = songList.find(s => s.url === url);
-      const title = song ? song.name : `${song_id}${diffcode}`;
-
-      const newTab = window.open();
+      const newTab = window.open('', '_blank');
       if (!newTab) {
         alert('ポップアップがブロックされました。許可してください。');
         return;
       }
 
-      // 読み込み中の表示
       newTab.document.write(`
         <html>
           <head>
+            <meta charset="utf-8">
             <title>${title}</title>
             <style>
-              body {
-                margin: 0;
-                background: rgba(0, 0, 0, 0.85);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                color: white;
-                font-family: sans-serif;
-                font-size: 0.5em;
-              }
+              body { margin: 0; background: rgba(0,0,0,.85); display: flex; justify-content: center; align-items: center; min-height: 100vh; color: white; font-family: sans-serif; font-size: 14px; }
             </style>
           </head>
-          <body>
-            読み込み中...
-          </body>
+          <body>読み込み中...</body>
         </html>
       `);
       newTab.document.close();
 
-
       try {
         const img = await loadImage(imagePath);
-        const imgURL = img.src;
-
-        newTab.document.body.innerHTML = `
-          <img src="${imgURL}" alt="${title}" style="
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-          ">`;
+        renderChartImage(newTab, img, title);
       } catch (e) {
-        newTab.document.body.innerHTML = ('画像の読み込みに失敗しました。譜面データが存在しない可能性があります。');
+        newTab.document.body.textContent = '画像の読み込みに失敗しました。譜面データが存在しない可能性があります。';
         console.error(e);
       }
+    }
+
+    function renderChartImage(newTab, loadedImage, title) {
+      const doc = newTab.document;
+      doc.body.innerHTML = '';
+      doc.title = title;
+
+      // モバイル側はこれまでの表示のまま（ブラウザ標準のピンチズームを維持）。
+      const desktopWheelZoom = typeof newTab.matchMedia === 'function' &&
+        newTab.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const image = doc.createElement('img');
+      image.src = loadedImage.src;
+      image.alt = title;
+      image.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
+
+      if (!desktopWheelZoom) {
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        doc.body.appendChild(image);
+        return;
+      }
+
+      // PC: ホイールでカーソル位置を中心にズーム。拡大後はドラッグで移動できる。
+      doc.body.style.cssText = 'margin:0; padding:0; overflow:hidden; background:rgba(0,0,0,.92);';
+      const viewer = doc.createElement('div');
+      viewer.style.cssText = 'position:fixed; inset:0; overflow:hidden; cursor:grab; touch-action:auto; user-select:none;';
+      doc.body.appendChild(viewer);
+      image.draggable = false;
+      image.style.position = 'absolute';
+      image.style.left = '0';
+      image.style.top = '0';
+      image.style.maxWidth = 'none';
+      image.style.width = `${loadedImage.naturalWidth}px`;
+      image.style.height = `${loadedImage.naturalHeight}px`;
+      image.style.transformOrigin = '0 0';
+      image.style.boxShadow = '0 0 20px rgba(255,255,255,0.2)';
+      viewer.appendChild(image);
+
+      const hint = doc.createElement('div');
+      hint.textContent = 'ホイール：拡大・縮小 ／ ドラッグ：移動';
+      hint.style.cssText = 'position:fixed; top:10px; right:12px; z-index:2; padding:6px 9px; border-radius:5px; background:rgba(0,0,0,.55); color:#fff; font:12px sans-serif; pointer-events:none;';
+      viewer.appendChild(hint);
+
+      let scale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let drag = null;
+      const naturalWidth = loadedImage.naturalWidth;
+      const naturalHeight = loadedImage.naturalHeight;
+
+      const applyTransform = () => {
+        image.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      };
+      const fitToViewport = () => {
+        const width = viewer.clientWidth || newTab.innerWidth;
+        const height = viewer.clientHeight || newTab.innerHeight;
+        scale = Math.min(width / naturalWidth, height / naturalHeight, 1);
+        translateX = (width - naturalWidth * scale) / 2;
+        translateY = (height - naturalHeight * scale) / 2;
+        applyTransform();
+      };
+
+      image.addEventListener('load', fitToViewport, { once: true });
+      // キャッシュから即時ロード済みの場合にも初期フィットを適用。
+      if (image.complete) fitToViewport();
+      newTab.addEventListener('resize', fitToViewport);
+
+      viewer.addEventListener('wheel', event => {
+        event.preventDefault();
+        const factor = event.deltaY < 0 ? 1.12 : 1 / 1.12;
+        const nextScale = Math.max(0.1, Math.min(8, scale * factor));
+        if (nextScale === scale) return;
+        const ratio = nextScale / scale;
+        translateX = event.clientX - (event.clientX - translateX) * ratio;
+        translateY = event.clientY - (event.clientY - translateY) * ratio;
+        scale = nextScale;
+        applyTransform();
+      }, { passive: false });
+
+      viewer.addEventListener('pointerdown', event => {
+        if (event.button !== 0) return;
+        drag = { x: event.clientX, y: event.clientY, tx: translateX, ty: translateY };
+        viewer.style.cursor = 'grabbing';
+        viewer.setPointerCapture(event.pointerId);
+      });
+      viewer.addEventListener('pointermove', event => {
+        if (!drag) return;
+        translateX = drag.tx + event.clientX - drag.x;
+        translateY = drag.ty + event.clientY - drag.y;
+        applyTransform();
+      });
+      const stopDrag = () => {
+        drag = null;
+        viewer.style.cursor = 'grab';
+      };
+      viewer.addEventListener('pointerup', stopDrag);
+      viewer.addEventListener('pointercancel', stopDrag);
+      viewer.addEventListener('lostpointercapture', stopDrag);
+    }
+
+    function parseChartUrlForImage(rawUrl) {
+      try {
+        const parsedUrl = new URL(rawUrl, window.location.href);
+        const path = parsedUrl.pathname;
+        if (path.replace(/\/$/, '').endsWith('/viewer.php')) {
+          const id = (parsedUrl.searchParams.get('id') || '').trim();
+          const code = normalizeChartCode(parsedUrl.searchParams.get('diff'));
+          return id && code ? { id, code, imageCode: code } : null;
+        }
+        const match = path.match(/\/(\d+)(mst|ult|end\d?)\.htm$/i);
+        if (match) {
+          const code = normalizeChartCode(match[2]);
+          return { id: match[1], code, imageCode: match[2].toLowerCase() };
+        }
+      } catch (_) {
+        // 下の正規表現で旧URL形式を判定する。
+      }
+      const oldMatch = rawUrl.match(/(\d+)(mst|ult|end\d?)\.htm(?:$|[?#])/i);
+      if (oldMatch) {
+        return { id: oldMatch[1], code: normalizeChartCode(oldMatch[2]), imageCode: oldMatch[2].toLowerCase() };
+      }
+      return null;
     }
 
     function loadImage(src) {
@@ -520,8 +787,10 @@
           <span class="diff-label" style="background:${getColor(item.diff)}">${item.diff}</span>
           <span class="level-label">${item.level || '?'}</span>
           <span class="song-title">${item.name}</span>
+          <button type="button" class="youtube-btn" title="YouTube動画リンクなし" aria-label="YouTube動画リンクなし" disabled>▶</button>
           <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
         `;
+        setupYoutubeButton(li.querySelector('.youtube-btn'), item);
         li.onclick = () => {
           setSongFields(item);
         };
@@ -536,11 +805,17 @@
       return ul;
     }
 
-    // diff_log.txt を読み込んで、最近の曲一覧を表示
+    // diff_songs.json は起動時に曲一覧とは独立して取得する。
+    // ページ復帰時にも再取得するため、通信中の重複呼び出しを抑止する。
+    let recentLoadInProgress = false;
     async function loadRecentSongs() {
+      if (recentLoadInProgress) return;
+      recentLoadInProgress = true;
       try {
-        const res = await fetch('./diff_songs.json');
-        const data = await res.json();
+        const data = await fetchFreshJson('./diff_songs.json');
+        if (!data || typeof data !== 'object' || Array.isArray(data)) {
+          throw new Error('diff_songs.json の形式が正しくありません');
+        }
 
         const latestContainer = document.getElementById('recentContainer');
         const archiveContainer = document.getElementById('recentArchiveContainer');
@@ -567,6 +842,8 @@
 
       } catch (err) {
         console.error('diff_songs.json の読み込みに失敗:', err);
+      } finally {
+        recentLoadInProgress = false;
       }
     }
 
@@ -594,10 +871,18 @@
       });
     }
 
-    // 初期化
-    loadSongList();
+    // 初期化。最近追加された譜面は重い検索データの準備を待たずに表示する。
     loadPrefs();
+    loadSongList();
     loadRecentSongs();
+
+    // スマホでブラウザ/アプリから戻ってきたときも最新の差分JSONを確認。
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) loadRecentSongs();
+    });
+    window.addEventListener('pageshow', event => {
+      if (event.persisted) loadRecentSongs();
+    });
   </script>
 </body>
 </html>

@@ -1,4 +1,13 @@
-charts
-*.py
-*.txt
-*.bak
+# GitHub Pagesで公開するファイルだけをGit管理する
+# まず、リポジトリ直下のファイルとフォルダをすべて無視する
+/*
+
+# 公開サイトの動作に必要なファイルだけ、Git管理の対象に戻す
+!/.gitignore
+!/index.html
+!/prev_chunithm_songs.json
+!/diff_songs.json
+
+# index.htmlから直接参照する譜面画像は公開する
+!/resized_charts/
+!/resized_charts/**
