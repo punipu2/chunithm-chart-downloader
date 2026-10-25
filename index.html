@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CHUNITHM 譜面保存ツール</title>
+  <title>CHUNITHM 譜面検索ツール</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <style>
     body { font-family: "Helvetica Neue", sans-serif; padding: 1em; background: #f2f2f2; }
@@ -40,12 +40,33 @@
     .youtube-btn.has-youtube { background-color: #e62117; border-color: #c91c13; }
     .youtube-btn.has-youtube:hover { background-color: #c91c13; }
     .youtube-btn:disabled { cursor: not-allowed; opacity: 0.45; }
+    .favorite-btn { flex: 0 0 27px; width: 27px; height: 30px; margin: 0 0.3em 0 0; padding: 0; border: none; border-radius: 4px; background: transparent; color: #777; cursor: pointer; font-size: 1.35em; line-height: 1; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+    .favorite-btn:hover { background: #f4f0df; color: #a87900; }
+    .favorite-btn.is-favorite { color: #d49b00; }
+    .favorite-btn.is-favorite:hover { background: #fff2c2; }
+    .favorite-btn:focus-visible { outline: 2px solid #d49b00; outline-offset: 1px; }
+    #favoritesContainer .note { padding: 0.4em 0; }
+    /* 過去の追加履歴：日付は標準の三角マーカーを使い、譜面数だけ右揃え */
+    .archive-date-summary { padding: 0.12em 0.2em 0.12em 0; line-height: 1.35; }
+    .archive-date-label { min-width: 0; }
+    .archive-date-count { float: right; width: 5em; text-align: right; color: #666; font-size: 0.9em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .recent-update-header { display: flex; align-items: center; margin: 0.45em 0 0.45em 0.35em; font-weight: bold; line-height: 1.35; }
+    .recent-update-title { flex: 1; min-width: 0; }
+    .recent-update-count { width: 5em; text-align: right; color: #666; font-size: 0.9em; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: normal; }
+    .recent-update-song-list { margin-top: 0; }
+    /* 日付と譜面一覧、その次の日付の間隔を調整 */
+    .archive-song-list { margin: 0.5em 0 0.7em; padding: 0; }
     @media screen and (max-width: 500px) {
+      body { padding: 0.35em; }
+      .container { padding: 0.65em; border-radius: 8px; }
       .inline-label { font-size: 0.8em; }
       input[type="text"], input[type="checkbox"] { font-size: 0.8em; }
       button { font-size: 0.9em; }
-      .diff-label { font-size: 0.7em; }
-      .level-label { font-size: 0.75em; }
+      .suggestion-item { padding: 0.35em; margin-bottom: 0.25em; }
+      .favorite-btn { flex-basis: 23px; width: 23px; height: 27px; margin-right: 0.15em; font-size: 1.2em; }
+      .diff-label { min-width: 2em; margin-right: 0.3em; padding: 0.15em 0.3em; font-size: 0.7em; }
+      .level-label { min-width: 1.6em; margin-right: 0.3em; font-size: 0.75em; }
+      .direct-link-btn, .youtube-btn { flex-basis: 27px; width: 27px; height: 28px; margin-left: 0.2em; }
       .song-title { font-size: 0.85em; }
     }
   </style>
@@ -53,7 +74,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>CHUNITHM 譜面検索/DLツール <span class="version">v2.0.0</span></h1>
+    <h1>CHUNITHM 譜面検索ツール <span class="version">v2.1.0</span></h1>
 
     <div class="section">
       <div class="note">
@@ -90,32 +111,36 @@
     <div class="section">
       <details id="recentSongs" style="margin: 1em 0;">
         <summary style="cursor:pointer; font-weight:bold;">
-          最近追加された譜面:
+          最近追加された譜面
         </summary>
         <div id="recentContainer"></div>
       </details>
       <details id="recentArchiveSongs" style="margin: 1em 0;">
         <summary style="cursor:pointer;">
-          過去に追加された譜面:
+          過去に追加された譜面
         </summary>
         <div id="recentArchiveContainer"></div>
       </details>
 
-      <button class="save" onclick="fetchAndSaveChart()">📥 譜面を見る</button>
+      <details id="favoritesPanel" style="margin: 1em 0;">
+        <summary id="favoritesSummary" style="cursor:pointer; font-weight:bold;">お気に入り（0）</summary>
+        <div id="favoritesContainer"></div>
+      </details>
+
+      <button class="save" onclick="fetchAndSaveChart()">↗ 譜面を開く</button>
       <button id="resetBtn">入力リセット</button>
     </div>
 
-    <div class="note">
-      ・2026/10/25時点で登録されている譜面に対応しました。<br>
-      ・スペース有無を無視した検索に対応しています。<br>
-      ・一部保存できない譜面があります。ご了承ください。
-    </div>
+    <div class="note">譜面データ更新日：2026/10/25</div>
 
     <div id="preview"></div>
   </div>
 
   <script>
     const songList = [];
+    const FAVORITES_STORAGE_KEY = 'chunithmFavoritesV1';
+    // key: chartIdentity(item), value: 保存用の譜面情報スナップショット
+    const favorites = new Map();
 
     // 静的JSONが差し替えられた後も古いHTTPキャッシュを使わない。
     async function fetchFreshJson(path) {
@@ -135,6 +160,7 @@
           song._nameSearchInfo = normalizeSearchWithMap(String(song.name || ''));
         }
         songList.push(...data);
+        renderFavorites();
         document.getElementById('search').dispatchEvent(new Event('input'));
       } catch (err) {
         alert("譜面データの読み込みに失敗しました。JSONファイルを確認してください。");
@@ -426,6 +452,114 @@
       );
     }
 
+    function favoriteSnapshot(item) {
+      return {
+        id: String(item?.id ?? ''),
+        chart_code: String(item?.chart_code ?? normalizeChartCode(item?.diff)),
+        name: String(item?.name ?? ''),
+        diff: String(item?.diff ?? ''),
+        level: String(item?.level ?? ''),
+        url: String(item?.url ?? ''),
+        youtube_id: String(item?.youtube_id ?? ''),
+        youtube_ids: Array.isArray(item?.youtube_ids) ? item.youtube_ids.slice() : []
+      };
+    }
+
+    function loadFavorites() {
+      try {
+        const raw = localStorage.getItem(FAVORITES_STORAGE_KEY);
+        if (raw) {
+          const saved = JSON.parse(raw);
+          if (Array.isArray(saved)) {
+            for (const entry of saved) {
+              // 保存形式は { key, item }。不正な項目はスキップする。
+              if (!entry || typeof entry !== 'object' || !entry.item || typeof entry.item !== 'object') continue;
+              const item = favoriteSnapshot(entry.item);
+              const key = String(entry.key || chartIdentity(item));
+              if (key && item.name && item.url) favorites.set(key, item);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('お気に入りを読み込めませんでした:', err);
+      }
+      renderFavorites();
+    }
+
+    function saveFavorites() {
+      try {
+        const saved = Array.from(favorites.entries()).map(([key, item]) => ({ key, item }));
+        localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(saved));
+        return true;
+      } catch (err) {
+        console.warn('お気に入りを保存できませんでした:', err);
+        return false;
+      }
+    }
+
+    function updateFavoriteButton(button, key) {
+      const active = Boolean(key && favorites.has(key));
+      button.dataset.favoriteKey = key || '';
+      button.textContent = active ? '★' : '☆';
+      button.classList.toggle('is-favorite', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      button.setAttribute('aria-label', active ? 'お気に入りから削除' : 'お気に入りに登録');
+      button.title = active ? 'お気に入りから削除' : 'お気に入りに登録';
+      button.disabled = !key;
+    }
+
+    function setupFavoriteButton(button, item) {
+      const key = chartIdentity(item);
+      updateFavoriteButton(button, key);
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        if (!key) return;
+        if (favorites.has(key)) {
+          favorites.delete(key);
+        } else {
+          favorites.set(key, favoriteSnapshot(item));
+        }
+        const saved = saveFavorites();
+        refreshFavoriteButtons();
+        renderFavorites();
+        if (!saved) {
+          const container = document.getElementById('favoritesContainer');
+          if (container) {
+            const warning = document.createElement('div');
+            warning.className = 'note';
+            warning.textContent = 'この環境ではお気に入りを保存できませんでした。';
+            container.prepend(warning);
+          }
+        }
+      });
+    }
+
+    function refreshFavoriteButtons() {
+      document.querySelectorAll('.favorite-btn').forEach(button => {
+        updateFavoriteButton(button, button.dataset.favoriteKey || '');
+      });
+    }
+
+    function renderFavorites() {
+      const container = document.getElementById('favoritesContainer');
+      const summary = document.getElementById('favoritesSummary');
+      if (!container || !summary) return;
+      summary.textContent = `お気に入り（${favorites.size}）`;
+      container.innerHTML = '';
+      if (favorites.size === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'note';
+        empty.textContent = '☆を押すと、ここに譜面を登録できます。';
+        container.appendChild(empty);
+        return;
+      }
+
+      const items = Array.from(favorites.entries()).map(([key, snapshot]) => {
+        return songList.find(song => chartIdentity(song) === key) || snapshot;
+      });
+      container.appendChild(createSongList(items));
+    }
+
     function loadPrefs() {
       ['MAS','ULT','WE'].forEach(diff => {
         const cb = document.getElementById('filter'+diff);
@@ -457,6 +591,52 @@
       }
       searchDebounceTimer = setTimeout(() => runSongSearch(rawInput), 20);
     });
+
+    function createSuggestionItem(song, normalizedInput = '') {
+      const li = document.createElement('li');
+      const displayName = normalizedInput
+        ? highlightNormalizedMatch(song.name, normalizedInput, song._nameSearchInfo)
+        : String(song.name || '');
+      const diffColor = {
+        MAS: "#a0a",
+        ULT: "#862333",
+        WE:  "#273eba"
+      }[song.diff] || "#333";
+
+      li.innerHTML = `
+        <button type="button" class="favorite-btn" aria-label="お気に入りに登録" title="お気に入りに登録">☆</button>
+        <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
+        <span class="level-label">${song.level || '?'}</span>
+        <span class="song-title">${displayName}</span>
+        <button type="button" class="youtube-btn" title="YouTube動画リンクなし" aria-label="YouTube動画リンクなし" disabled>▶</button>
+        <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
+      `;
+      setupFavoriteButton(li.querySelector('.favorite-btn'), song);
+      setupYoutubeButton(li.querySelector('.youtube-btn'), song);
+      li.onclick = () => {
+        setSongFields(song);
+        // 選択した譜面だけ候補欄に残して、後から☆やリンクを操作できるようにする。
+        const suggestions = document.getElementById('suggestions');
+        for (const candidate of Array.from(suggestions.children)) {
+          if (candidate !== li) candidate.remove();
+        }
+        suggestions.style.display = 'block';
+      };
+      li.querySelector('.direct-link-btn').onclick = (event) => {
+        event.stopPropagation();
+        setSongFields(song);
+        fetchAndSaveChart();
+      };
+      return li;
+    }
+
+    function updateSelectedSuggestion(item) {
+      // お気に入り・履歴側で別譜面を選んだ場合も、検索候補欄の1件を同じ譜面へ同期する。
+      const suggestions = document.getElementById('suggestions');
+      const canonical = resolveSongForItem(item) || item;
+      suggestions.replaceChildren(createSuggestionItem(canonical));
+      suggestions.style.display = 'block';
+    }
 
     function runSongSearch(rawInput) {
       // 古い検索結果が遅れて出ないよう、現在の入力値と一致する場合だけ描画する。
@@ -508,33 +688,7 @@
 
       const fragment = document.createDocumentFragment();
       for (const song of results) {
-        const li = document.createElement('li');
-        const displayName = highlightNormalizedMatch(song.name, input, song._nameSearchInfo);
-        const diffColor = {
-          MAS: "#a0a",
-          ULT: "#862333",
-          WE:  "#273eba"
-        }[song.diff] || "#333";
-
-        li.innerHTML = `
-          <span class="diff-label" style="background:${diffColor}">${song.diff}</span>
-          <span class="level-label">${song.level || '?'}</span>
-          <span class="song-title">${displayName}</span>
-          <button type="button" class="youtube-btn" title="YouTube動画リンクなし" aria-label="YouTube動画リンクなし" disabled>▶</button>
-          <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
-        `;
-        setupYoutubeButton(li.querySelector('.youtube-btn'), song);
-        li.onclick = () => {
-          setSongFields(song);
-          suggestions.innerHTML = '';
-          suggestions.style.display = 'none';
-        };
-        li.querySelector('.direct-link-btn').onclick = (event) => {
-          event.stopPropagation();
-          setSongFields(song);
-          fetchAndSaveChart();
-        };
-        fragment.appendChild(li);
+        fragment.appendChild(createSuggestionItem(song, input));
       }
       suggestions.appendChild(fragment);
       suggestions.style.display = 'block';
@@ -746,33 +900,70 @@
       highlightField('url');
     }
 
-    function createUpdateContent(title, items, useDetails = false) {
-      if (useDetails) {
-        // 過去分
-        const details = document.createElement('details');
-        details.style.margin = '0.5em 0 0.5em 1em';
+    function createUpdateContent(title, items) {
+      // 直近の更新は、開いた時点で譜面一覧を表示する。
+      const wrapper = document.createElement('div');
+      const header = document.createElement('div');
+      header.className = 'recent-update-header';
+      const titleLabel = document.createElement('span');
+      titleLabel.className = 'recent-update-title';
+      titleLabel.textContent = title;
+      const countLabel = document.createElement('span');
+      countLabel.className = 'recent-update-count';
+      countLabel.textContent = `${items.length}譜面`;
+      header.append(titleLabel, countLabel);
+      wrapper.appendChild(header);
+      const songList = createSongList(items);
+      songList.classList.add('recent-update-song-list');
+      wrapper.appendChild(songList);
+      return wrapper;
+    }
 
-        const summary = document.createElement('summary');
-        summary.textContent = `${title}`;
-        summary.style.cursor = 'pointer';
-        summary.style.fontWeight = 'bold';
-
-        details.appendChild(summary);
-        details.appendChild(createSongList(items));
-        return details;
-      } else {
-        // 直近
-        const wrapper = document.createElement('div');
-
-        const header = document.createElement('div');
-        header.textContent = `${title}`;
-        header.style.fontWeight = 'bold';
-        header.style.margin = '0.5em 0';
-
-        wrapper.appendChild(header);
-        wrapper.appendChild(createSongList(items));
-        return wrapper;
+    function splitArchiveTitle(title) {
+      // 通常のキー例: "Mate - 2026/10/8"
+      // バージョン名がない古いキーは、日付全体を表示名として扱う。
+      const match = String(title).match(/^(.*?)\s+-\s+(\d{4}\/\d{1,2}\/\d{1,2})$/);
+      if (!match) {
+        return { version: 'その他', date: String(title), title: String(title) };
       }
+      return { version: match[1].trim(), date: match[2], title: String(title) };
+    }
+
+    function createArchiveVersionSection(version, entries) {
+      // バージョン単位で折りたたみ、その中に日付単位の折りたたみを置く。
+      const versionDetails = document.createElement('details');
+      versionDetails.style.margin = '0.45em 0 0.45em 0.35em';
+
+      const versionSummary = document.createElement('summary');
+      versionSummary.textContent = `${version}`;
+      versionSummary.style.cursor = 'pointer';
+      versionSummary.style.fontWeight = 'bold';
+      versionDetails.appendChild(versionSummary);
+
+      entries.forEach(entry => {
+        const dateDetails = document.createElement('details');
+        dateDetails.style.margin = '0.3em 0px 0.3em 0.8em';
+        // バージョンを開いた時点で、日付配下の譜面一覧まで見えるように初期展開する。
+        dateDetails.open = true;
+
+        const dateSummary = document.createElement('summary');
+        dateSummary.className = 'archive-date-summary';
+        dateSummary.style.cursor = 'pointer';
+        const dateLabel = document.createElement('span');
+        dateLabel.className = 'archive-date-label';
+        dateLabel.textContent = entry.date;
+        const dateCount = document.createElement('span');
+        dateCount.className = 'archive-date-count';
+        dateCount.textContent = `${entry.items.length}譜面`;
+        dateSummary.append(dateLabel, dateCount);
+        dateDetails.appendChild(dateSummary);
+        const songList = createSongList(entry.items);
+        songList.classList.add('archive-song-list');
+        dateDetails.appendChild(songList);
+        versionDetails.appendChild(dateDetails);
+      });
+
+      return versionDetails;
     }
 
     function createSongList(items) {
@@ -784,19 +975,23 @@
         const li = document.createElement('li');
         li.className = 'suggestion-item';
         li.innerHTML = `
+          <button type="button" class="favorite-btn" aria-label="お気に入りに登録" title="お気に入りに登録">☆</button>
           <span class="diff-label" style="background:${getColor(item.diff)}">${item.diff}</span>
           <span class="level-label">${item.level || '?'}</span>
           <span class="song-title">${item.name}</span>
           <button type="button" class="youtube-btn" title="YouTube動画リンクなし" aria-label="YouTube動画リンクなし" disabled>▶</button>
           <button type="button" class="direct-link-btn" title="譜面を見る" aria-label="譜面を見る">↗</button>
         `;
+        setupFavoriteButton(li.querySelector('.favorite-btn'), item);
         setupYoutubeButton(li.querySelector('.youtube-btn'), item);
         li.onclick = () => {
           setSongFields(item);
+          updateSelectedSuggestion(item);
         };
         li.querySelector('.direct-link-btn').onclick = (event) => {
           event.stopPropagation();
           setSongFields(item);
+          updateSelectedSuggestion(item);
           fetchAndSaveChart();
         };
         ul.appendChild(li);
@@ -833,11 +1028,21 @@
           createUpdateContent(latestTitle, data[latestTitle], false)
         );
 
-        // 過去分の更新
+        // 過去分は「バージョン > 日付 > 譜面」の3段階で折りたたむ。
+        // titles は新しい順なので、バージョンと日付の並びも新しい順になる。
+        const archiveByVersion = new Map();
         titles.slice(1).forEach(title => {
-          archiveContainer.appendChild(
-            createUpdateContent(title, data[title], true)
-          );
+          const parsed = splitArchiveTitle(title);
+          if (!archiveByVersion.has(parsed.version)) archiveByVersion.set(parsed.version, []);
+          archiveByVersion.get(parsed.version).push({
+            date: parsed.date,
+            title: parsed.title,
+            items: Array.isArray(data[title]) ? data[title] : []
+          });
+        });
+
+        archiveByVersion.forEach((entries, version) => {
+          archiveContainer.appendChild(createArchiveVersionSection(version, entries));
         });
 
       } catch (err) {
@@ -873,6 +1078,7 @@
 
     // 初期化。最近追加された譜面は重い検索データの準備を待たずに表示する。
     loadPrefs();
+    loadFavorites();
     loadSongList();
     loadRecentSongs();
 
